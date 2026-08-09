@@ -27,24 +27,24 @@ type Spec = {
   opacity: number;
 };
 
-/** Quiet black marks — always in the viewport field, drift continuously */
+/** Black marks — clearly visible, still behind content */
 const SPECS: Spec[] = [
-  { Icon: Camera, x: 0.08, y: 0.14, size: 42, vx: 16, vy: 12, scrollFactor: 0.18, rotate: -8, spin: 3.2, opacity: 0.085 },
-  { Icon: PenLine, x: 0.78, y: 0.2, size: 38, vx: -14, vy: 14, scrollFactor: 0.28, rotate: 12, spin: -2.8, opacity: 0.075 },
-  { Icon: Code2, x: 0.18, y: 0.38, size: 46, vx: 11, vy: -13, scrollFactor: 0.12, rotate: 0, spin: 4.2, opacity: 0.09 },
-  { Icon: Film, x: 0.86, y: 0.46, size: 40, vx: -18, vy: 10, scrollFactor: 0.32, rotate: 6, spin: -3.2, opacity: 0.075 },
-  { Icon: Atom, x: 0.12, y: 0.58, size: 44, vx: 13, vy: 15, scrollFactor: 0.2, rotate: -4, spin: 5, opacity: 0.085 },
-  { Icon: Sigma, x: 0.72, y: 0.68, size: 36, vx: -10, vy: -14, scrollFactor: 0.24, rotate: 10, spin: -4, opacity: 0.075 },
-  { Icon: BookOpen, x: 0.42, y: 0.78, size: 34, vx: -15, vy: 11, scrollFactor: 0.14, rotate: -6, spin: 2.8, opacity: 0.07 },
-  { Icon: Aperture, x: 0.58, y: 0.88, size: 38, vx: 9, vy: 16, scrollFactor: 0.3, rotate: 0, spin: 5.5, opacity: 0.08 },
-  { Icon: Binary, x: 0.5, y: 0.28, size: 32, vx: 15, vy: -11, scrollFactor: 0.16, rotate: 8, spin: -2.6, opacity: 0.07 },
-  { Icon: Triangle, x: 0.32, y: 0.5, size: 30, vx: -12, vy: 13, scrollFactor: 0.22, rotate: -12, spin: 3.6, opacity: 0.075 },
-  { Icon: Camera, x: 0.92, y: 0.72, size: 30, vx: -9, vy: 15, scrollFactor: 0.35, rotate: 4, spin: -5, opacity: 0.065 },
-  { Icon: Code2, x: 0.05, y: 0.92, size: 34, vx: 20, vy: -9, scrollFactor: 0.15, rotate: -2, spin: 4, opacity: 0.075 },
-  { Icon: PenLine, x: 0.55, y: 0.1, size: 32, vx: 12, vy: 17, scrollFactor: 0.26, rotate: 5, spin: -3, opacity: 0.065 },
-  { Icon: Film, x: 0.28, y: 0.64, size: 36, vx: -11, vy: -15, scrollFactor: 0.2, rotate: -3, spin: 3.2, opacity: 0.07 },
-  { Icon: Atom, x: 0.88, y: 0.34, size: 38, vx: -16, vy: 12, scrollFactor: 0.3, rotate: 8, spin: -4.2, opacity: 0.075 },
-  { Icon: Sigma, x: 0.2, y: 0.84, size: 32, vx: 15, vy: -12, scrollFactor: 0.18, rotate: -6, spin: 3.2, opacity: 0.07 },
+  { Icon: Camera, x: 0.08, y: 0.14, size: 44, vx: 16, vy: 12, scrollFactor: 0.18, rotate: -8, spin: 3.2, opacity: 0.2 },
+  { Icon: PenLine, x: 0.78, y: 0.2, size: 40, vx: -14, vy: 14, scrollFactor: 0.28, rotate: 12, spin: -2.8, opacity: 0.18 },
+  { Icon: Code2, x: 0.18, y: 0.38, size: 48, vx: 11, vy: -13, scrollFactor: 0.12, rotate: 0, spin: 4.2, opacity: 0.22 },
+  { Icon: Film, x: 0.86, y: 0.46, size: 42, vx: -18, vy: 10, scrollFactor: 0.32, rotate: 6, spin: -3.2, opacity: 0.18 },
+  { Icon: Atom, x: 0.12, y: 0.58, size: 46, vx: 13, vy: 15, scrollFactor: 0.2, rotate: -4, spin: 5, opacity: 0.2 },
+  { Icon: Sigma, x: 0.72, y: 0.68, size: 38, vx: -10, vy: -14, scrollFactor: 0.24, rotate: 10, spin: -4, opacity: 0.18 },
+  { Icon: BookOpen, x: 0.42, y: 0.78, size: 36, vx: -15, vy: 11, scrollFactor: 0.14, rotate: -6, spin: 2.8, opacity: 0.17 },
+  { Icon: Aperture, x: 0.58, y: 0.88, size: 40, vx: 9, vy: 16, scrollFactor: 0.3, rotate: 0, spin: 5.5, opacity: 0.19 },
+  { Icon: Binary, x: 0.5, y: 0.28, size: 34, vx: 15, vy: -11, scrollFactor: 0.16, rotate: 8, spin: -2.6, opacity: 0.17 },
+  { Icon: Triangle, x: 0.32, y: 0.5, size: 32, vx: -12, vy: 13, scrollFactor: 0.22, rotate: -12, spin: 3.6, opacity: 0.18 },
+  { Icon: Camera, x: 0.92, y: 0.72, size: 32, vx: -9, vy: 15, scrollFactor: 0.35, rotate: 4, spin: -5, opacity: 0.16 },
+  { Icon: Code2, x: 0.05, y: 0.92, size: 36, vx: 20, vy: -9, scrollFactor: 0.15, rotate: -2, spin: 4, opacity: 0.18 },
+  { Icon: PenLine, x: 0.55, y: 0.1, size: 34, vx: 12, vy: 17, scrollFactor: 0.26, rotate: 5, spin: -3, opacity: 0.16 },
+  { Icon: Film, x: 0.28, y: 0.64, size: 38, vx: -11, vy: -15, scrollFactor: 0.2, rotate: -3, spin: 3.2, opacity: 0.17 },
+  { Icon: Atom, x: 0.88, y: 0.34, size: 40, vx: -16, vy: 12, scrollFactor: 0.3, rotate: 8, spin: -4.2, opacity: 0.18 },
+  { Icon: Sigma, x: 0.2, y: 0.84, size: 34, vx: 15, vy: -12, scrollFactor: 0.18, rotate: -6, spin: 3.2, opacity: 0.17 },
 ];
 
 function wrap(value: number, min: number, max: number) {
@@ -115,14 +115,12 @@ export function AmbientField({ className }: { className?: string }) {
         st.y += spec.vy * dt;
         st.rot += spec.spin * dt;
 
-        // Continuous travel: wrap around the full viewport so marks never "leave the site"
         st.x = wrap(st.x, -pad, w + pad);
         st.y = wrap(st.y, -pad, h + pad);
 
-        // Scroll congruence: shift field with page so it feels site-wide
         const shiftY = (scrollY * spec.scrollFactor) % (h + pad * 2);
         const py = wrap(st.y - shiftY, -pad, h + pad);
-        const pulse = 0.9 + 0.1 * Math.sin(now / 1200 + i * 0.65);
+        const pulse = 0.92 + 0.08 * Math.sin(now / 1200 + i * 0.65);
 
         el.style.transform = `translate3d(${st.x}px, ${py}px, 0) rotate(${st.rot}deg)`;
         el.style.opacity = String(spec.opacity * pulse);
