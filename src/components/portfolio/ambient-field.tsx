@@ -29,22 +29,22 @@ type Spec = {
 
 /** Black marks — clearly visible, still behind content */
 const SPECS: Spec[] = [
-  { Icon: Camera, x: 0.08, y: 0.14, size: 44, vx: 16, vy: 12, scrollFactor: 0.18, rotate: -8, spin: 3.2, opacity: 0.2 },
-  { Icon: PenLine, x: 0.78, y: 0.2, size: 40, vx: -14, vy: 14, scrollFactor: 0.28, rotate: 12, spin: -2.8, opacity: 0.18 },
-  { Icon: Code2, x: 0.18, y: 0.38, size: 48, vx: 11, vy: -13, scrollFactor: 0.12, rotate: 0, spin: 4.2, opacity: 0.22 },
-  { Icon: Film, x: 0.86, y: 0.46, size: 42, vx: -18, vy: 10, scrollFactor: 0.32, rotate: 6, spin: -3.2, opacity: 0.18 },
-  { Icon: Atom, x: 0.12, y: 0.58, size: 46, vx: 13, vy: 15, scrollFactor: 0.2, rotate: -4, spin: 5, opacity: 0.2 },
-  { Icon: Sigma, x: 0.72, y: 0.68, size: 38, vx: -10, vy: -14, scrollFactor: 0.24, rotate: 10, spin: -4, opacity: 0.18 },
-  { Icon: BookOpen, x: 0.42, y: 0.78, size: 36, vx: -15, vy: 11, scrollFactor: 0.14, rotate: -6, spin: 2.8, opacity: 0.17 },
-  { Icon: Aperture, x: 0.58, y: 0.88, size: 40, vx: 9, vy: 16, scrollFactor: 0.3, rotate: 0, spin: 5.5, opacity: 0.19 },
-  { Icon: Binary, x: 0.5, y: 0.28, size: 34, vx: 15, vy: -11, scrollFactor: 0.16, rotate: 8, spin: -2.6, opacity: 0.17 },
-  { Icon: Triangle, x: 0.32, y: 0.5, size: 32, vx: -12, vy: 13, scrollFactor: 0.22, rotate: -12, spin: 3.6, opacity: 0.18 },
-  { Icon: Camera, x: 0.92, y: 0.72, size: 32, vx: -9, vy: 15, scrollFactor: 0.35, rotate: 4, spin: -5, opacity: 0.16 },
-  { Icon: Code2, x: 0.05, y: 0.92, size: 36, vx: 20, vy: -9, scrollFactor: 0.15, rotate: -2, spin: 4, opacity: 0.18 },
-  { Icon: PenLine, x: 0.55, y: 0.1, size: 34, vx: 12, vy: 17, scrollFactor: 0.26, rotate: 5, spin: -3, opacity: 0.16 },
-  { Icon: Film, x: 0.28, y: 0.64, size: 38, vx: -11, vy: -15, scrollFactor: 0.2, rotate: -3, spin: 3.2, opacity: 0.17 },
-  { Icon: Atom, x: 0.88, y: 0.34, size: 40, vx: -16, vy: 12, scrollFactor: 0.3, rotate: 8, spin: -4.2, opacity: 0.18 },
-  { Icon: Sigma, x: 0.2, y: 0.84, size: 34, vx: 15, vy: -12, scrollFactor: 0.18, rotate: -6, spin: 3.2, opacity: 0.17 },
+  { Icon: Camera, x: 0.08, y: 0.14, size: 44, vx: 16, vy: 12, scrollFactor: 0.18, rotate: -8, spin: 3.2, opacity: 0.35 },
+  { Icon: PenLine, x: 0.78, y: 0.2, size: 40, vx: -14, vy: 14, scrollFactor: 0.28, rotate: 12, spin: -2.8, opacity: 0.35 },
+  { Icon: Code2, x: 0.18, y: 0.38, size: 48, vx: 11, vy: -13, scrollFactor: 0.12, rotate: 0, spin: 4.2, opacity: 0.35 },
+  { Icon: Film, x: 0.86, y: 0.46, size: 42, vx: -18, vy: 10, scrollFactor: 0.32, rotate: 6, spin: -3.2, opacity: 0.35 },
+  { Icon: Atom, x: 0.12, y: 0.58, size: 46, vx: 13, vy: 15, scrollFactor: 0.2, rotate: -4, spin: 5, opacity: 0.35 },
+  { Icon: Sigma, x: 0.72, y: 0.68, size: 38, vx: -10, vy: -14, scrollFactor: 0.24, rotate: 10, spin: -4, opacity: 0.35 },
+  { Icon: BookOpen, x: 0.42, y: 0.78, size: 36, vx: -15, vy: 11, scrollFactor: 0.14, rotate: -6, spin: 2.8, opacity: 0.35 },
+  { Icon: Aperture, x: 0.58, y: 0.88, size: 40, vx: 9, vy: 16, scrollFactor: 0.3, rotate: 0, spin: 5.5, opacity: 0.35 },
+  { Icon: Binary, x: 0.5, y: 0.28, size: 34, vx: 15, vy: -11, scrollFactor: 0.16, rotate: 8, spin: -2.6, opacity: 0.35 },
+  { Icon: Triangle, x: 0.32, y: 0.5, size: 32, vx: -12, vy: 13, scrollFactor: 0.22, rotate: -12, spin: 3.6, opacity: 0.35 },
+  { Icon: Camera, x: 0.92, y: 0.72, size: 32, vx: -9, vy: 15, scrollFactor: 0.35, rotate: 4, spin: -5, opacity: 0.35 },
+  { Icon: Code2, x: 0.05, y: 0.92, size: 36, vx: 20, vy: -9, scrollFactor: 0.15, rotate: -2, spin: 4, opacity: 0.35 },
+  { Icon: PenLine, x: 0.55, y: 0.1, size: 34, vx: 12, vy: 17, scrollFactor: 0.26, rotate: 5, spin: -3, opacity: 0.35 },
+  { Icon: Film, x: 0.28, y: 0.64, size: 38, vx: -11, vy: -15, scrollFactor: 0.2, rotate: -3, spin: 3.2, opacity: 0.35 },
+  { Icon: Atom, x: 0.88, y: 0.34, size: 40, vx: -16, vy: 12, scrollFactor: 0.3, rotate: 8, spin: -4.2, opacity: 0.35 },
+  { Icon: Sigma, x: 0.2, y: 0.84, size: 34, vx: 15, vy: -12, scrollFactor: 0.18, rotate: -6, spin: 3.2, opacity: 0.35 },
 ];
 
 function wrap(value: number, min: number, max: number) {
