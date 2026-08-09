@@ -1,0 +1,40 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build / deploy
+dist/
+.output/
+.nitro/
+.vercel/
+.tanstack/
+.vinxi/
+
+# env & secrets
+.env
+.env.*
+!.env.example
+
+# logs & cache
+*.log
+.npm
+.cache/
+.turbo/
+tmp/
+temp/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# local-only / large source assets (optimized copies live in public/)
+attachments/
+artifacts/
+screenshots/
+
+# agent / platform
+.grok/
+AGENTS.md
