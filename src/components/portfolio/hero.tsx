@@ -1,7 +1,69 @@
+import { useEffect, useState } from "react";
 import { ArrowDown } from "lucide-react";
 import { SITE } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { useReveal } from "@/hooks/use-reveal";
+
+function TypewriterTitle({ text }: { text: string }) {
+  const [shown, setShown] = useState("");
+  const [done, setDone] = useState(false);
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) {
+      setReduced(true);
+      setShown(text);
+      setDone(true);
+      return;
+    }
+
+    let i = 0;
+    let timer = 0;
+    // Brief pause before typing starts
+    const start = window.setTimeout(() => {
+      const step = () => {
+        i += 1;
+        setShown(text.slice(0, i));
+        if (i < text.length) {
+          // Slightly slower on spaces / punctuation for a natural cadence
+          const ch = text[i - 1] ?? "";
+          const delay = /[—–.,]/.test(ch) ? 90 : ch === " " ? 45 : 28;
+          timer = window.setTimeout(step, delay);
+        } else {
+          setDone(true);
+        }
+      };
+      step();
+    }, 320);
+
+    return () => {
+      window.clearTimeout(start);
+      window.clearTimeout(timer);
+    };
+  }, [text]);
+
+  return (
+    <h1
+      className="reveal max-w-[20ch] text-4xl font-semibold tracking-[-0.035em] text-fg sm:text-5xl"
+      aria-label={text}
+    >
+      <span className="whitespace-pre-wrap">
+        {shown}
+        {!reduced && (
+          <span
+            className={
+              done
+                ? "ml-0.5 inline-block h-[0.9em] w-[0.08em] translate-y-[0.08em] bg-fg align-baseline opacity-0"
+                : "ml-0.5 inline-block h-[0.9em] w-[0.08em] translate-y-[0.08em] animate-pulse bg-fg align-baseline"
+            }
+            aria-hidden
+          />
+        )}
+      </span>
+    </h1>
+  );
+}
 
 export function Hero() {
   const ref = useReveal<HTMLElement>();
@@ -33,9 +95,7 @@ export function Hero() {
         <p className="reveal mb-5 text-[13px] font-medium uppercase tracking-[0.14em] text-fg-muted">
           {SITE.role} · {SITE.location}
         </p>
-        <h1 className="reveal max-w-[18ch] text-4xl font-semibold tracking-[-0.035em] text-fg sm:text-5xl">
-          {SITE.tagline}
-        </h1>
+        <TypewriterTitle text={SITE.tagline} />
         <p
           className="reveal mt-6 max-w-xl text-lg leading-relaxed text-fg-secondary md:text-[1.2rem] md:leading-relaxed"
           style={{ transitionDelay: "80ms" }}
