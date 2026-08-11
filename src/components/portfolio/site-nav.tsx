@@ -56,7 +56,7 @@ export function SiteNav() {
       >
         <div className="inline-flex items-center gap-2 text-[15px] font-semibold tracking-tight text-fg">
           <a
-            href="#top"
+            href="/#top"
             onClick={close}
             className="inline-flex items-center gap-2 transition-colors duration-[var(--motion-quick)] hover:text-accent"
           >
@@ -98,7 +98,7 @@ export function SiteNav() {
           ))}
           <li className="ml-2">
             <Button asChild size="sm" variant="primary">
-              <a href="#contact">Contact</a>
+              <a href="/#contact">Contact</a>
             </Button>
           </li>
         </ul>
@@ -139,7 +139,7 @@ export function SiteNav() {
           ))}
           <li className="pt-2">
             <Button asChild className="w-full">
-              <a href="#contact" onClick={close}>
+              <a href="/#contact" onClick={close}>
                 Contact
               </a>
             </Button>

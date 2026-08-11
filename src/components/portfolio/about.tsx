@@ -9,7 +9,7 @@ export function About() {
     <section
       id="about"
       ref={ref}
-      className="section-pad scroll-mt-24 py-16 md:py-24"
+      className="section-pad scroll-mt-[calc(var(--grok-banner-h,0px)+5.5rem)] py-16 md:py-24"
     >
       <div className="mx-auto grid max-w-[72rem] gap-12 lg:grid-cols-12 lg:gap-16 lg:items-start">
         <div className="reveal lg:col-span-5">
@@ -43,7 +43,7 @@ export function About() {
             <p className="text-sm text-fg-muted">
               {SITE.role} · {SITE.location}
             </p>
-            <WritingLink className="mt-4 text-sm text-accent" />
+            <WritingLink className="mt-4 text-sm text-accent" label="blog" />
           </div>
         </div>
 

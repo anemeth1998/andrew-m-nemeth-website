@@ -43,7 +43,7 @@ export function Projects() {
     <section
       id="work"
       ref={ref}
-      className="section-pad relative scroll-mt-24 border-t border-border bg-bg-subtle/90 py-16 md:py-24"
+      className="section-pad relative scroll-mt-[calc(var(--grok-banner-h,0px)+5.5rem)] border-t border-border bg-bg-subtle/90 py-16 md:py-24"
     >
       <div className="mx-auto max-w-[72rem]">
         <div className="reveal">

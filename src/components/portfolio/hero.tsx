@@ -109,15 +109,15 @@ export function Hero() {
           style={{ transitionDelay: "140ms" }}
         >
           <Button asChild size="lg">
-            <a href="#work">View work</a>
+            <a href="/#work">View work</a>
           </Button>
           <Button asChild size="lg" variant="secondary">
-            <a href="#about">About</a>
+            <a href="/#about">About</a>
           </Button>
         </div>
 
         <a
-          href="#work"
+          href="/#work"
           className="reveal group mt-16 inline-flex items-center gap-2 text-sm font-medium text-fg-muted transition-colors duration-[var(--motion-quick)] hover:text-accent-deep"
           style={{ transitionDelay: "200ms" }}
         >

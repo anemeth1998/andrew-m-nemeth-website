@@ -9,7 +9,7 @@ export function Skills() {
     <section
       id="skills"
       ref={ref}
-      className="section-pad scroll-mt-24 border-t border-border bg-bg-subtle py-16 md:py-24"
+      className="section-pad scroll-mt-[calc(var(--grok-banner-h,0px)+5.5rem)] border-t border-border bg-bg-subtle py-16 md:py-24"
     >
       <div className="mx-auto max-w-[72rem]">
         <div className="reveal max-w-lg">

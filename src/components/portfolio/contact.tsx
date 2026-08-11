@@ -46,7 +46,7 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="section-pad scroll-mt-24 py-16 md:py-24"
+      className="section-pad scroll-mt-[calc(var(--grok-banner-h,0px)+5.5rem)] py-16 md:py-24"
     >
       <div className="mx-auto grid max-w-[72rem] gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="reveal lg:col-span-5">
@@ -58,8 +58,8 @@ export function Contact() {
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-fg-secondary">
             Open to conversations about teaching, study, creative work, and
-            technical projects. Notes live in the blog; longer pieces also on 𝕏.
-
+            technical projects. Longer writing lives on the Blog; threads still
+            appear on 𝕏.
           </p>
 
           <div className="mt-8 space-y-4">
@@ -78,11 +78,19 @@ export function Contact() {
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-fg-muted">
                 Writing
               </p>
-              <WritingLink className="mt-1 text-[15px] text-fg" />
+              <WritingLink className="mt-1 text-[15px] text-accent" />
               <p className="mt-1 text-sm text-fg-muted">
-                Full articles on 𝕏 — site notes are under Blog.
+                On-site home for essays. Original threads and short notes on{" "}
+                <a
+                  href="https://x.com/AndrewMNemeth"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-medium text-fg transition-opacity hover:opacity-75"
+                >
+                  𝕏
+                </a>
+                .
               </p>
-
             </div>
           </div>
         </div>
