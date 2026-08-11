@@ -5,6 +5,7 @@ import { NowStrip } from "@/components/portfolio/now-strip";
 import { Hero } from "@/components/portfolio/hero";
 import { Projects } from "@/components/portfolio/projects";
 import { About } from "@/components/portfolio/about";
+import { Blog } from "@/components/portfolio/blog";
 import { Skills } from "@/components/portfolio/skills";
 import { Contact } from "@/components/portfolio/contact";
 import { SiteFooter } from "@/components/portfolio/site-footer";
@@ -25,6 +26,7 @@ function HomePage() {
             <Hero />
             <Projects />
             <About />
+            <Blog />
             <Skills />
             <Contact />
           </main>

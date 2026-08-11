@@ -122,7 +122,8 @@ export function SiteFooter() {
             </p>
           </div>
           <p className="text-xs text-bg-elevated/45">
-            Writing lives on 𝕏. This site is for the work.
+            Writing on this site and on 𝕏.
+
           </p>
         </div>
       </div>

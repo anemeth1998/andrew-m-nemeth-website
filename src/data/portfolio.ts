@@ -32,6 +32,19 @@ export type Project = {
   duration?: string;
 };
 
+export type BlogPost = {
+  id: string;
+  title: string;
+  date: string;
+  /** Short ISO-ish label for display */
+  dateLabel: string;
+  excerpt: string;
+  tags: string[];
+  /** Optional external read (e.g. 𝕏 article) */
+  href?: string;
+  external?: boolean;
+};
+
 export const CATEGORIES: MediaCategory[] = [
   "Drawing",
   "Photography",
@@ -96,6 +109,19 @@ export const PROJECTS: Project[] = [
       { label: "GitHub", href: "https://github.com/AndrewMNemeth", kind: "github" },
       { label: "Live demo", href: "#contact", kind: "demo" },
     ],
+  },
+  {
+    id: "draw-web-heart",
+    title: "Web & Heart",
+    category: "Drawing",
+    year: "2026",
+    tagline: "Ink line portrait",
+    description:
+      "Black-line portrait with spiderweb textile and heart pendant—clean contour, dense pattern work on the garment.",
+    art: "linear-gradient(165deg, #faf9f6 0%, #e8e4dc 100%)",
+    image: "/work/draw-web-heart.jpg",
+    featured: true,
+    aspect: "portrait",
   },
   {
     id: "tanger-chair",
@@ -194,35 +220,6 @@ export const PROJECTS: Project[] = [
     aspect: "portrait",
   },
   {
-    id: "lattice",
-    title: "Lattice",
-    category: "Software",
-    year: "2025",
-    tagline: "Discrete structures, made visible",
-    description:
-      "Interactive sketches of graphs and lattices—small programs that make abstract course material tangible.",
-    art: "linear-gradient(140deg, #0f1419 0%, #1e3a4c 55%, #3d6b7a 100%)",
-    aspect: "landscape",
-    stack: ["Python", "React", "SVG"],
-    links: [
-      { label: "GitHub", href: "https://github.com/AndrewMNemeth", kind: "github" },
-      { label: "Case notes", href: "#contact", kind: "case" },
-    ],
-  },
-  {
-    id: "draw-web-heart",
-    title: "Web & Heart",
-    category: "Drawing",
-    year: "2026",
-    tagline: "Ink line portrait",
-    description:
-      "Black-line portrait with spiderweb textile and heart pendant—clean contour, dense pattern work on the garment.",
-    art: "linear-gradient(165deg, #faf9f6 0%, #e8e4dc 100%)",
-    image: "/work/draw-web-heart.jpg",
-    featured: true,
-    aspect: "portrait",
-  },
-  {
     id: "draw-peace-selfie",
     title: "Peace Selfie",
     category: "Drawing",
@@ -307,6 +304,22 @@ export const PROJECTS: Project[] = [
     aspect: "portrait",
   },
   {
+    id: "lattice",
+    title: "Lattice",
+    category: "Software",
+    year: "2025",
+    tagline: "Discrete structures, made visible",
+    description:
+      "Interactive sketches of graphs and lattices—small programs that make abstract course material tangible.",
+    art: "linear-gradient(140deg, #0f1419 0%, #1e3a4c 55%, #3d6b7a 100%)",
+    aspect: "landscape",
+    stack: ["Python", "React", "SVG"],
+    links: [
+      { label: "GitHub", href: "https://github.com/AndrewMNemeth", kind: "github" },
+      { label: "Case notes", href: "#contact", kind: "case" },
+    ],
+  },
+  {
     id: "threshold",
     title: "Threshold",
     category: "Video",
@@ -350,6 +363,50 @@ export const PROJECTS: Project[] = [
 
 export const FEATURED_IDS = PROJECTS.filter((p) => p.featured).map((p) => p.id);
 
+/** Short-form writing index — longer pieces may still live on 𝕏. */
+export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: "two-degrees",
+    title: "Two degrees, one desk",
+    date: "2026-07-18",
+    dateLabel: "Jul 18, 2026",
+    excerpt:
+      "Teaching by day and studying CS, physics, and math by night isn’t a brand story—it’s a schedule. Notes on keeping both honest.",
+    tags: ["Teaching", "Study"],
+    href: "https://x.com/AndrewMNemeth/articles",
+    external: true,
+  },
+  {
+    id: "line-before-lens",
+    title: "Line before lens",
+    date: "2026-06-02",
+    dateLabel: "Jun 2, 2026",
+    excerpt:
+      "Why ink portraits and camera work sit next to each other in the same portfolio—attention is the shared craft.",
+    tags: ["Drawing", "Photography"],
+  },
+  {
+    id: "humanities-to-hard-sciences",
+    title: "From the humanities into the hard sciences",
+    date: "2026-04-21",
+    dateLabel: "Apr 21, 2026",
+    excerpt:
+      "A triple major in Political Science, History, and Philosophy & Religion doesn’t expire when you open a calculus book. It changes how you ask questions.",
+    tags: ["Study", "Background"],
+    href: "https://x.com/AndrewMNemeth/articles",
+    external: true,
+  },
+  {
+    id: "small-tools-classroom",
+    title: "Small tools for a real classroom",
+    date: "2026-03-09",
+    dateLabel: "Mar 9, 2026",
+    excerpt:
+      "Software doesn’t have to be a product. A gradebook CLI and a lattice sketch can be enough if they earn their keep on Monday morning.",
+    tags: ["Software", "Teaching"],
+  },
+];
+
 export const SKILLS = [
   {
     group: "Creative",
@@ -374,6 +431,7 @@ export const SKILLS = [
 export const NAV_LINKS = [
   { href: "#work", label: "Work" },
   { href: "#about", label: "About" },
+  { href: "#blog", label: "Blog" },
   { href: "#skills", label: "Skills" },
 ] as const;
 
@@ -381,6 +439,7 @@ export const NAV_LINKS = [
 export const FOOTER_NAV_LINKS = [
   { href: "#work", label: "Work" },
   { href: "#about", label: "About" },
+  { href: "#blog", label: "Blog" },
   { href: "#skills", label: "Skills" },
   { href: "#contact", label: "Contact" },
 ] as const;
@@ -422,6 +481,6 @@ export const SITE = {
   bio: [
     "I teach high school in North Carolina and study as a non-traditional student, moving from a humanities foundation into computer science, applied physics, and mathematics.",
     "I hold a bachelor’s degree with a triple major in Political Science (Pre-law), History, and Philosophy & Religion. I’m now pursuing a second bachelor’s focused on Computer Science, Applied Physics, and Mathematics—while still in the classroom full time.",
-    "The portfolio is one practice, not several: drawing, photography, software, video, and hybrid work sit next to each other because that’s how the thinking actually moves. Longer writing lives on 𝕏.",
+    "The portfolio is one practice, not several: drawing, photography, software, video, and hybrid work sit next to each other because that’s how the thinking actually moves. Writing lives here and on 𝕏.",
   ],
 };
