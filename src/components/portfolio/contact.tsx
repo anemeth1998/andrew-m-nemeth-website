@@ -58,7 +58,7 @@ export function Contact() {
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-fg-secondary">
             Open to conversations about teaching, study, creative work, and
-            technical projects. Notes live in the blog; longer pieces also on 𝕏.
+            technical projects. Writing and shorter notes live on 𝕏.
 
           </p>
 
@@ -80,7 +80,7 @@ export function Contact() {
               </p>
               <WritingLink className="mt-1 text-[15px] text-fg" />
               <p className="mt-1 text-sm text-fg-muted">
-                Full articles on 𝕏 — site notes are under Blog.
+                Articles and longer posts — no blog on this site.
               </p>
 
             </div>
