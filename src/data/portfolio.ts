@@ -98,6 +98,18 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    id: "draw-face-to-face",
+    title: "Face to Face",
+    category: "Drawing",
+    year: "2026",
+    tagline: "Color line, two sitters",
+    description:
+      "Two seated figures on a white field—split-pink hair and a red-black sweater, clean contour, color reserved for clothing and hair.",
+    art: "linear-gradient(165deg, #faf9f6 0%, #e8e4dc 100%)",
+    image: "/work/draw-face-to-face.jpg",
+    aspect: "landscape",
+  },
+  {
     id: "draw-web-heart",
     title: "Web & Heart",
     category: "Drawing",

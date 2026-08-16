@@ -25,6 +25,7 @@ function aspectClass(aspect: Project["aspect"], category: Project["category"]) {
   if (aspect === "portrait") return "aspect-[3/4]";
   if (aspect === "square") return "aspect-square";
   if (aspect === "wide") return "aspect-[16/9]";
+  if (aspect === "landscape") return "aspect-[6/5]";
   if (category === "Drawing") return "aspect-[4/5]";
   if (category === "Video") return "aspect-[16/9]";
   if (category === "Photography") return "aspect-[3/2]";
