@@ -32,13 +32,7 @@ export type Project = {
   duration?: string;
 };
 
-export const CATEGORIES: MediaCategory[] = [
-  "Drawing",
-  "Photography",
-  "Software",
-  "Video",
-  "Mixed",
-];
+export const CATEGORIES: MediaCategory[] = ["Drawing", "Photography"];
 
 export const PROJECTS: Project[] = [
   {
@@ -79,23 +73,6 @@ export const PROJECTS: Project[] = [
     image: "/work/normandie-motel.jpg",
     featured: true,
     aspect: "portrait",
-  },
-  {
-    id: "orbit-solver",
-    title: "Orbit Solver",
-    category: "Software",
-    year: "2025",
-    tagline: "Numerical experiments in motion",
-    description:
-      "A browser tool for visualizing simple orbital mechanics—built while bridging humanities habits with quantitative practice.",
-    art: "linear-gradient(145deg, #1d1d1f 0%, #2c3e50 50%, #5d6d7e 100%)",
-    featured: true,
-    aspect: "landscape",
-    stack: ["TypeScript", "Canvas", "Math"],
-    links: [
-      { label: "GitHub", href: "https://github.com/AndrewMNemeth", kind: "github" },
-      { label: "Live demo", href: "#contact", kind: "demo" },
-    ],
   },
   {
     id: "draw-face-to-face",
@@ -302,62 +279,6 @@ export const PROJECTS: Project[] = [
     image: "/work/draw-juice-box.jpg",
     aspect: "portrait",
   },
-  {
-    id: "lattice",
-    title: "Lattice",
-    category: "Software",
-    year: "2025",
-    tagline: "Discrete structures, made visible",
-    description:
-      "Interactive sketches of graphs and lattices—small programs that make abstract course material tangible.",
-    art: "linear-gradient(140deg, #0f1419 0%, #1e3a4c 55%, #3d6b7a 100%)",
-    aspect: "landscape",
-    stack: ["Python", "React", "SVG"],
-    links: [
-      { label: "GitHub", href: "https://github.com/AndrewMNemeth", kind: "github" },
-      { label: "Case notes", href: "#contact", kind: "case" },
-    ],
-  },
-  {
-    id: "threshold",
-    title: "Threshold",
-    category: "Video",
-    year: "2024",
-    tagline: "Short study in light and interruption",
-    description:
-      "A brief video essay on doorways, chalk dust, and the moments between periods—teaching as a visual rhythm.",
-    art: "linear-gradient(170deg, #1a1a1c 0%, #3d3a36 55%, #6b6358 100%)",
-    aspect: "wide",
-    duration: "2:14",
-  },
-  {
-    id: "signal-map",
-    title: "Signal Map",
-    category: "Mixed",
-    year: "2025",
-    tagline: "Photo, code, and drawn overlays",
-    description:
-      "Photographs of local infrastructure with hand-drawn annotation and a lightweight map built in code—one object, three languages.",
-    art: "linear-gradient(148deg, #dfe6ea 0%, #9aabb8 35%, #3e4f5c 70%, #1d1d1f 100%)",
-    aspect: "landscape",
-    stack: ["Photography", "Ink", "JS"],
-    links: [{ label: "View notes", href: "#contact", kind: "external" }],
-  },
-  {
-    id: "gradebook-cli",
-    title: "Gradebook CLI",
-    category: "Software",
-    year: "2024",
-    tagline: "Small tool, daily use",
-    description:
-      "A terminal helper for sorting marks and notes—software as a quiet extension of teaching work.",
-    art: "linear-gradient(145deg, #121412 0%, #1f2a1f 45%, #3d4f3d 100%)",
-    aspect: "landscape",
-    stack: ["Rust", "CLI"],
-    links: [
-      { label: "GitHub", href: "https://github.com/AndrewMNemeth", kind: "github" },
-    ],
-  },
 ];
 
 export const FEATURED_IDS = PROJECTS.filter((p) => p.featured).map((p) => p.id);
@@ -413,14 +334,6 @@ export const SOCIAL = {
     href: "https://www.linkedin.com/in/andrewmnemeth",
   },
 } as const;
-
-export const NOW = {
-  items: [
-    "Teaching high school in North Carolina",
-    "Second bachelor’s: computer science, applied physics, mathematics",
-    "Drawing, photographing, and building small software tools",
-  ],
-};
 
 export const SITE = {
   name: "Andrew M. Németh",
