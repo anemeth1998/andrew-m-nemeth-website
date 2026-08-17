@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ChevronRight } from "lucide-react";
 import { SITE } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { useReveal } from "@/hooks/use-reveal";
@@ -98,9 +98,13 @@ export function Hero() {
           <Button asChild size="lg">
             <a href="#work">View work</a>
           </Button>
-          <Button asChild size="lg" variant="secondary">
-            <a href="#about">About</a>
-          </Button>
+          <a
+            href="#about"
+            className="inline-flex min-h-12 items-center gap-0.5 text-base font-medium text-fg transition-opacity hover:opacity-70"
+          >
+            Learn more
+            <ChevronRight className="size-4" />
+          </a>
         </div>
 
         <a

@@ -8,15 +8,29 @@ import { playDevilHornsRiff } from "@/lib/guitar-riff";
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [riffing, setRiffing] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 12);
+      if (open) {
+        setHidden(false);
+        last = y;
+        return;
+      }
+      if (y < 48) setHidden(false);
+      else if (y > last + 8) setHidden(true);
+      else if (y < last - 8) setHidden(false);
+      last = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [open]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -42,11 +56,12 @@ export function SiteNav() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,border-color]",
+        "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,border-color,transform]",
         "duration-[var(--motion-fast)] ease-[var(--ease-apple)]",
         "pt-[var(--grok-banner-h,0px)]",
+        hidden && !open ? "-translate-y-full" : "translate-y-0",
         scrolled || open
-          ? "glass border-b border-border shadow-sm"
+          ? "glass border-b border-border"
           : "bg-transparent border-b border-transparent",
       )}
     >

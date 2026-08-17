@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { X } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   CATEGORIES,
@@ -8,10 +8,12 @@ import {
   type Project,
 } from "@/data/portfolio";
 import { ProjectCard } from "@/components/portfolio/project-card";
+import { Lightbox } from "@/components/portfolio/lightbox";
 import { useReveal } from "@/hooks/use-reveal";
 
 export function Projects() {
   const [selected, setSelected] = useState<MediaCategory[]>([]);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const filterKey = selected.slice().sort().join(",") || "all";
   const ref = useReveal<HTMLElement>("0px 0px -6% 0px", filterKey);
 
@@ -20,10 +22,20 @@ export function Projects() {
     [],
   );
 
+  const gallery = useMemo(
+    () => PROJECTS.filter((p) => Boolean(p.image)),
+    [],
+  );
+
   const filtered = useMemo(() => {
     if (selected.length === 0) return PROJECTS;
     return PROJECTS.filter((p) => selected.includes(p.category));
   }, [selected]);
+
+  function openProject(project: Project) {
+    const i = gallery.findIndex((p) => p.id === project.id);
+    if (i >= 0) setOpenIndex(i);
+  }
 
   function toggle(cat: MediaCategory) {
     setSelected((prev) =>
@@ -43,11 +55,11 @@ export function Projects() {
     <section
       id="work"
       ref={ref}
-      className="section-pad relative scroll-mt-24 border-t border-border bg-bg py-16 md:py-24"
+      className="relative scroll-mt-24 border-t border-border bg-bg"
     >
-      <div className="mx-auto max-w-[72rem]">
+      <div className="section-pad mx-auto max-w-[72rem] pt-16 md:pt-24">
         <div className="reveal">
-          <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-fg-muted">
+          <p className="text-[13px] font-medium uppercase tracking-[0.16em] text-fg-muted">
             Selected work
           </p>
           <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
@@ -55,22 +67,27 @@ export function Projects() {
               Stronger pieces, first
             </h2>
             <p className="max-w-sm text-[15px] leading-relaxed text-fg-secondary">
-              A short row of work that holds up across mediums—then the full
-              archive below, filterable by type.
+              Full-bleed modules, then the archive — filterable by type.
             </p>
           </div>
         </div>
+      </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((project, i) => (
-            <FeaturedCell key={project.id} project={project} index={i} />
-          ))}
-        </div>
+      <div className="mt-10 grid gap-3 px-3 md:grid-cols-2">
+        {featured.map((project) => (
+          <FeatureModule
+            key={project.id}
+            project={project}
+            onOpen={() => openProject(project)}
+          />
+        ))}
+      </div>
 
+      <div className="section-pad mx-auto max-w-[72rem] pb-16 md:pb-24">
         <div className="reveal mt-20 border-t border-border pt-14">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-fg-muted">
+              <p className="text-[13px] font-medium uppercase tracking-[0.16em] text-fg-muted">
                 Archive
               </p>
               <h2 className="mt-2 text-2xl font-medium tracking-tight text-fg md:text-3xl">
@@ -99,7 +116,7 @@ export function Projects() {
               aria-pressed={selected.length === 0}
               className={cn(
                 "min-h-10 rounded-full px-4 text-sm font-medium",
-                "transition-[background-color,color,box-shadow,border-color,transform] duration-[var(--motion-quick)] ease-[var(--ease-apple)]",
+                "transition-[background-color,color,border-color] duration-[var(--motion-quick)] ease-[var(--ease-apple)]",
                 selected.length === 0
                   ? "bg-accent text-accent-fg"
                   : "border border-border bg-transparent text-fg-secondary hover:border-fg hover:text-fg",
@@ -118,7 +135,7 @@ export function Projects() {
                   aria-pressed={active}
                   className={cn(
                     "min-h-10 rounded-full px-4 text-sm font-medium",
-                    "transition-[background-color,color,box-shadow,border-color,transform] duration-[var(--motion-quick)] ease-[var(--ease-apple)]",
+                    "transition-[background-color,color,border-color] duration-[var(--motion-quick)] ease-[var(--ease-apple)]",
                     active
                       ? "bg-fg text-bg"
                       : "border border-border bg-transparent text-fg-secondary hover:border-fg hover:text-fg",
@@ -132,19 +149,13 @@ export function Projects() {
               <button
                 type="button"
                 onClick={clearFilters}
-                className={cn(
-                  "inline-flex min-h-10 items-center gap-1.5 rounded-full px-3 text-sm font-medium",
-                  "text-fg-muted transition-colors hover:text-accent-deep",
-                )}
+                className="inline-flex min-h-10 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-fg-muted hover:text-fg"
               >
                 <X className="size-3.5" />
                 Clear
               </button>
             )}
           </div>
-          <p className="mt-3 text-xs text-fg-subtle">
-            Select one or more mediums. Clear returns to the full grid.
-          </p>
         </div>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -153,37 +164,67 @@ export function Projects() {
               key={`${filterKey}-${project.id}`}
               project={project}
               index={i}
+              onOpen={() => openProject(project)}
             />
           ))}
         </div>
-
-        {filtered.length === 0 && (
-          <div className="mt-16 text-center">
-            <p className="text-fg-muted">No work matches those filters.</p>
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="mt-3 text-sm font-medium text-accent transition-colors hover:text-accent-deep"
-            >
-              Clear filters
-            </button>
-          </div>
-        )}
       </div>
+
+      {openIndex !== null && (
+        <Lightbox
+          items={gallery}
+          index={openIndex}
+          onClose={() => setOpenIndex(null)}
+          onIndex={setOpenIndex}
+        />
+      )}
     </section>
   );
 }
 
-function FeaturedCell({
+function FeatureModule({
   project,
-  index,
+  onOpen,
 }: {
   project: Project;
-  index: number;
+  onOpen: () => void;
 }) {
   return (
-    <div className={cn(index === 0 && "sm:col-span-2 lg:col-span-2")}>
-      <ProjectCard project={project} index={index} featured={index === 0} />
-    </div>
+    <article className="reveal flex min-h-[32rem] flex-col overflow-hidden rounded-2xl bg-bg-elevated text-center md:min-h-[40rem]">
+      <div className="flex flex-col items-center px-6 pb-4 pt-12 md:pt-16">
+        <p className="text-xs font-medium uppercase tracking-[0.16em] text-fg-muted">
+          {project.category}
+        </p>
+        <h3 className="mt-3 text-3xl font-medium tracking-tight text-fg md:text-4xl">
+          {project.title}
+        </h3>
+        <p className="mt-2 max-w-md text-[15px] leading-relaxed text-fg-secondary">
+          {project.tagline}
+        </p>
+        <button
+          type="button"
+          onClick={onOpen}
+          className="mt-4 inline-flex items-center text-[15px] font-medium text-fg transition-opacity hover:opacity-70"
+        >
+          View
+          <ChevronRight className="size-4" />
+        </button>
+      </div>
+      <button
+        type="button"
+        onClick={onOpen}
+        className="relative mx-auto mt-auto w-full max-w-xl flex-1 overflow-hidden px-6 pb-10"
+        aria-label={`Open ${project.title}`}
+      >
+        {project.image ? (
+          <img
+            src={project.image}
+            alt=""
+            className="mx-auto h-full max-h-[22rem] w-full object-contain transition-transform duration-[var(--motion-medium)] ease-[var(--ease-out-soft)] hover:scale-[1.03] md:max-h-[26rem]"
+            loading="lazy"
+          />
+        ) : null}
+      </button>
+    </article>
   );
 }

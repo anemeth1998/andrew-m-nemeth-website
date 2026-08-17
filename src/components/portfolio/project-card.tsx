@@ -35,11 +35,11 @@ function aspectClass(aspect: Project["aspect"], category: Project["category"]) {
 type Props = {
   project: Project;
   index?: number;
-  /** Larger treatment for the featured row */
   featured?: boolean;
+  onOpen?: () => void;
 };
 
-export function ProjectCard({ project, index = 0, featured = false }: Props) {
+export function ProjectCard({ project, index = 0, featured = false, onOpen }: Props) {
   const isImageHeavy =
     project.category === "Drawing" ||
     project.category === "Photography" ||
@@ -57,8 +57,22 @@ export function ProjectCard({ project, index = 0, featured = false }: Props) {
         "hover:-translate-y-0.5 hover:shadow-card-hover",
         "focus-within:-translate-y-0.5 focus-within:shadow-card-hover",
         featured && "md:min-h-full",
+        onOpen && "cursor-pointer",
       )}
       style={{ transitionDelay: `${Math.min(index, 8) * 40}ms` }}
+      onClick={onOpen}
+      onKeyDown={
+        onOpen
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onOpen();
+              }
+            }
+          : undefined
+      }
+      role={onOpen ? "button" : undefined}
+      tabIndex={onOpen ? 0 : undefined}
     >
       {/* Media */}
       <div
