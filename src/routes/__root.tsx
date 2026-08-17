@@ -19,7 +19,8 @@ export const Route = createRootRoute({
           "Portfolio of Andrew M. Németh — teacher and non-traditional student working across drawing, photography, software, video, and hybrid media in North Carolina.",
       },
       { name: "apple-mobile-web-app-title", content: APP_NAME },
-      { name: "theme-color", content: "#000000" },
+      { name: "theme-color", content: "#fbfbfd", media: "(prefers-color-scheme: light)" },
+      { name: "theme-color", content: "#000000", media: "(prefers-color-scheme: dark)" },
       ...(ogImage
         ? [
             { property: "og:image", content: ogImage },

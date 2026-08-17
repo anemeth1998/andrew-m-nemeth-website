@@ -75,7 +75,7 @@ export function Hero() {
       className="section-pad relative flex min-h-[min(78dvh,760px)] flex-col justify-end pb-14 pt-10 md:pb-20 md:pt-14"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-        <div className="absolute inset-x-0 top-0 h-[28rem] bg-[radial-gradient(ellipse_at_50%_-10%,rgba(255,255,255,0.08),transparent_60%)]" />
+        <div className="hero-glow absolute inset-x-0 top-0 h-[28rem]" />
       </div>
 
       <div className="relative mx-auto w-full max-w-[72rem]">

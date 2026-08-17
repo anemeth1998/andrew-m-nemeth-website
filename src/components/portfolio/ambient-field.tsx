@@ -186,14 +186,14 @@ export function AmbientField({ className }: { className?: string }) {
       )}
       aria-hidden
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,255,255,0.06),transparent_55%)]" />
+      <div className="ambient-veil absolute inset-0" />
       {STARS.map((star, i) => (
         <span
           key={`s-${i}`}
           ref={(el) => {
             if (el) starNodes.current[i] = el;
           }}
-          className="absolute left-0 top-0 rounded-full bg-fg will-change-transform"
+          className="ambient-star absolute left-0 top-0 rounded-full bg-fg will-change-transform"
           style={{ width: star.size, height: star.size, opacity: star.opacity }}
         />
       ))}
