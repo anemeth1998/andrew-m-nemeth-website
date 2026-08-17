@@ -17,13 +17,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: [
-          "rounded-full bg-accent text-accent-fg shadow-btn-primary",
-          "hover:bg-accent-deep hover:shadow-btn-primary-hover hover:-translate-y-px",
+          "rounded-full bg-accent text-accent-fg",
+          "hover:bg-accent-hover hover:shadow-btn-primary-hover hover:-translate-y-px",
           "active:bg-accent-deep",
         ].join(" "),
         secondary: [
-          "rounded-full bg-bg-muted text-fg border border-transparent",
-          "hover:bg-accent-soft hover:text-accent-deep hover:border-accent/25",
+          "rounded-full bg-transparent text-fg border border-border-strong",
+          "hover:bg-accent-soft hover:border-fg",
           "active:bg-accent-soft-strong",
         ].join(" "),
         ghost: [

@@ -53,7 +53,7 @@ export function Contact() {
           <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-fg-muted">
             Contact
           </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-fg">
+          <h2 className="mt-3 text-3xl font-medium tracking-tight text-fg">
             Say hello.
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-fg-secondary">
@@ -90,7 +90,7 @@ export function Contact() {
         <div className="reveal lg:col-span-7" style={{ transitionDelay: "80ms" }}>
           <form
             onSubmit={onSubmit}
-            className="rounded-xl border border-border bg-bg-elevated p-6 shadow-card md:p-8"
+            className="rounded-lg border border-border bg-bg-elevated p-6 md:p-8"
             noValidate
           >
             {status === "sent" ? (
@@ -153,7 +153,7 @@ export function Contact() {
                 </div>
 
                 {error && (
-                  <p className="text-sm text-red-600" role="alert">
+                  <p className="text-sm text-red-400" role="alert">
                     {error}
                   </p>
                 )}

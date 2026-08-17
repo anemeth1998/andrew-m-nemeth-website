@@ -27,12 +27,12 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="section-pad border-t border-border bg-fg text-bg-elevated">
+    <footer className="section-pad border-t border-border bg-bg text-fg">
       <div className="mx-auto max-w-[72rem] py-14 md:py-16">
         <div className="grid gap-10 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-5">
-            <p className="text-2xl font-semibold tracking-tight">{SITE.name}</p>
-            <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-bg-elevated/70">
+            <p className="text-2xl font-medium tracking-tight">{SITE.name}</p>
+            <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-fg-secondary">
               {SITE.role}. Drawing, photography, software, video—and the space
               between them. Based in {SITE.location}.
             </p>
@@ -40,7 +40,7 @@ export function SiteFooter() {
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-7 md:justify-items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-bg-elevated/50">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-fg-muted">
                 Navigate
               </p>
               <ul className="mt-4 space-y-2.5">
@@ -48,7 +48,7 @@ export function SiteFooter() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="text-sm text-bg-elevated/80 transition-colors hover:text-bg-elevated"
+                      className="text-sm text-fg-secondary transition-colors hover:text-fg"
                     >
                       {link.label}
                     </a>
@@ -57,7 +57,7 @@ export function SiteFooter() {
               </ul>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-bg-elevated/50">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-fg-muted">
                 Elsewhere
               </p>
               <ul className="mt-4 flex flex-wrap items-center gap-3">
@@ -67,7 +67,7 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Writing on 𝕏"
-                    className="inline-flex size-9 items-center justify-center rounded-full text-bg-elevated/80 transition-colors hover:bg-bg-elevated/10 hover:text-bg-elevated"
+                    className="inline-flex size-9 items-center justify-center rounded-full text-fg-secondary transition-colors hover:bg-accent-soft hover:text-fg"
                   >
                     <XLogo className="size-4" />
                   </a>
@@ -78,7 +78,7 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="GitHub"
-                    className="inline-flex size-9 items-center justify-center rounded-full text-bg-elevated/80 transition-colors hover:bg-bg-elevated/10 hover:text-bg-elevated"
+                    className="inline-flex size-9 items-center justify-center rounded-full text-fg-secondary transition-colors hover:bg-accent-soft hover:text-fg"
                   >
                     <Github className="size-4" />
                   </a>
@@ -89,7 +89,7 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="LinkedIn"
-                    className="inline-flex size-9 items-center justify-center rounded-full text-bg-elevated/80 transition-colors hover:bg-bg-elevated/10 hover:text-bg-elevated"
+                    className="inline-flex size-9 items-center justify-center rounded-full text-fg-secondary transition-colors hover:bg-accent-soft hover:text-fg"
                   >
                     <Linkedin className="size-4" />
                   </a>
@@ -97,33 +97,32 @@ export function SiteFooter() {
               </ul>
             </div>
             <div className="col-span-2 sm:col-span-1">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-bg-elevated/50">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-fg-muted">
                 Contact
               </p>
               <a
                 href={`mailto:${SITE.email}`}
-                className="mt-4 block text-sm text-bg-elevated/80 transition-colors hover:text-bg-elevated"
+                className="mt-4 block text-sm text-fg-secondary transition-colors hover:text-fg"
               >
                 {SITE.email}
               </a>
-              <p className="mt-2 text-sm text-bg-elevated/50">{SITE.location}</p>
+              <p className="mt-2 text-sm text-fg-muted">{SITE.location}</p>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-bg-elevated/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
-            <p className="text-xs text-bg-elevated/45">
+            <p className="text-xs text-fg-muted">
               © {year} {SITE.name}
             </p>
-            <p className="inline-flex items-center gap-1.5 text-xs text-bg-elevated/45">
+            <p className="inline-flex items-center gap-1.5 text-xs text-fg-muted">
               <span>Made with Grok</span>
-              <GrokMark className="size-3.5 shrink-0 text-bg-elevated/55" />
+              <GrokMark className="size-3.5 shrink-0 text-fg-subtle" />
             </p>
           </div>
-          <p className="text-xs text-bg-elevated/45">
+          <p className="text-xs text-fg-muted">
             Writing lives on 𝕏. This site is for the work.
-
           </p>
         </div>
       </div>

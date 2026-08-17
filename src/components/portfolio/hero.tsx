@@ -45,7 +45,7 @@ function TypewriterTitle({ text }: { text: string }) {
 
   return (
     <h1
-      className="reveal max-w-[20ch] text-4xl font-semibold tracking-[-0.035em] text-fg sm:text-5xl"
+      className="reveal max-w-[20ch] text-4xl font-medium tracking-[-0.045em] text-fg sm:text-5xl"
       aria-label={text}
     >
       <span className="whitespace-pre-wrap">
@@ -75,20 +75,7 @@ export function Hero() {
       className="section-pad relative flex min-h-[min(78dvh,760px)] flex-col justify-end pb-14 pt-10 md:pb-20 md:pt-14"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-        <div
-          className="absolute -right-24 top-8 size-[26rem] rounded-full opacity-[0.35] blur-3xl md:size-[34rem]"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(0,113,227,0.14) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute -left-16 bottom-8 size-[20rem] rounded-full opacity-40 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(0,0,0,0.035) 0%, transparent 70%)",
-          }}
-        />
+        <div className="absolute inset-x-0 top-0 h-[28rem] bg-[radial-gradient(ellipse_at_50%_-10%,rgba(255,255,255,0.08),transparent_60%)]" />
       </div>
 
       <div className="relative mx-auto w-full max-w-[72rem]">

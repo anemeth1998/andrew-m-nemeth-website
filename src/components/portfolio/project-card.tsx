@@ -52,10 +52,10 @@ export function ProjectCard({ project, index = 0, featured = false }: Props) {
   return (
     <article
       className={cn(
-        "reveal group relative flex h-full flex-col overflow-hidden rounded-xl bg-bg-elevated shadow-card",
+        "reveal group relative flex h-full flex-col overflow-hidden rounded-lg bg-bg-elevated shadow-card",
         "transition-[transform,box-shadow,opacity] duration-[var(--motion-medium)] ease-[var(--ease-out-soft)]",
-        "hover:-translate-y-1 hover:shadow-card-hover",
-        "focus-within:-translate-y-1 focus-within:shadow-card-hover",
+        "hover:-translate-y-0.5 hover:shadow-card-hover",
+        "focus-within:-translate-y-0.5 focus-within:shadow-card-hover",
         featured && "md:min-h-full",
       )}
       style={{ transitionDelay: `${Math.min(index, 8) * 40}ms` }}

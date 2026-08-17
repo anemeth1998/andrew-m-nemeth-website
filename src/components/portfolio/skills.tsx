@@ -16,7 +16,7 @@ export function Skills() {
           <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-fg-muted">
             Skills
           </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-fg">
+          <h2 className="mt-3 text-3xl font-medium tracking-tight text-fg">
             A short map
           </h2>
           <p className="mt-3 text-[15px] leading-relaxed text-fg-secondary">

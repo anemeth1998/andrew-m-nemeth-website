@@ -43,7 +43,7 @@ export function Projects() {
     <section
       id="work"
       ref={ref}
-      className="section-pad relative scroll-mt-24 border-t border-border bg-bg-subtle/90 py-16 md:py-24"
+      className="section-pad relative scroll-mt-24 border-t border-border bg-bg py-16 md:py-24"
     >
       <div className="mx-auto max-w-[72rem]">
         <div className="reveal">
@@ -51,7 +51,7 @@ export function Projects() {
             Selected work
           </p>
           <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <h2 className="max-w-[18ch] text-3xl font-semibold tracking-tight text-fg">
+            <h2 className="max-w-[18ch] text-3xl font-medium tracking-tight text-fg">
               Stronger pieces, first
             </h2>
             <p className="max-w-sm text-[15px] leading-relaxed text-fg-secondary">
@@ -73,7 +73,7 @@ export function Projects() {
               <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-fg-muted">
                 Archive
               </p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-fg md:text-3xl">
+              <h2 className="mt-2 text-2xl font-medium tracking-tight text-fg md:text-3xl">
                 All work
               </h2>
             </div>
@@ -101,8 +101,8 @@ export function Projects() {
                 "min-h-10 rounded-full px-4 text-sm font-medium",
                 "transition-[background-color,color,box-shadow,border-color,transform] duration-[var(--motion-quick)] ease-[var(--ease-apple)]",
                 selected.length === 0
-                  ? "bg-accent text-accent-fg shadow-btn-primary"
-                  : "border border-border bg-bg-elevated text-fg-secondary shadow-sm hover:border-accent/30 hover:bg-accent-soft hover:text-accent-deep",
+                  ? "bg-accent text-accent-fg"
+                  : "border border-border bg-transparent text-fg-secondary hover:border-fg hover:text-fg",
               )}
             >
               All
@@ -120,8 +120,8 @@ export function Projects() {
                     "min-h-10 rounded-full px-4 text-sm font-medium",
                     "transition-[background-color,color,box-shadow,border-color,transform] duration-[var(--motion-quick)] ease-[var(--ease-apple)]",
                     active
-                      ? "bg-fg text-bg-elevated shadow-sm"
-                      : "border border-border bg-bg-elevated text-fg-secondary shadow-sm hover:border-accent/30 hover:bg-accent-soft hover:text-accent-deep",
+                      ? "bg-fg text-bg"
+                      : "border border-border bg-transparent text-fg-secondary hover:border-fg hover:text-fg",
                   )}
                 >
                   {cat}

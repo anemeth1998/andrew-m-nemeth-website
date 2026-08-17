@@ -2,38 +2,36 @@
 @import "tw-animate-css";
 
 @theme {
-  /* Apple-inspired editorial palette — light, quiet, precise */
-  --color-bg: #fbfbfd;
-  --color-bg-elevated: #ffffff;
-  --color-bg-subtle: #f5f5f7;
-  --color-bg-muted: #e8e8ed;
-  --color-fg: #1d1d1f;
-  --color-fg-secondary: #6e6e73;
-  --color-fg-muted: #86868b;
-  --color-fg-subtle: #a1a1a6;
-  --color-border: rgba(0, 0, 0, 0.08);
-  --color-border-strong: rgba(0, 0, 0, 0.12);
-  --color-accent: #0071e3;
-  --color-accent-hover: #0077ed;
-  --color-accent-deep: #0058b0;
-  --color-accent-soft: rgba(0, 113, 227, 0.08);
-  --color-accent-soft-strong: rgba(0, 113, 227, 0.16);
-  --color-accent-fg: #ffffff;
-  --color-ink: #1d1d1f;
-  --color-success: #34c759;
+  /* x.ai-inspired: void black, white type, hairline borders */
+  --color-bg: #000000;
+  --color-bg-elevated: #0a0a0a;
+  --color-bg-subtle: #050505;
+  --color-bg-muted: #141414;
+  --color-fg: #f4f4f5;
+  --color-fg-secondary: #a1a1aa;
+  --color-fg-muted: #71717a;
+  --color-fg-subtle: #52525b;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.18);
+  --color-accent: #ffffff;
+  --color-accent-hover: #e4e4e7;
+  --color-accent-deep: #d4d4d8;
+  --color-accent-soft: rgba(255, 255, 255, 0.08);
+  --color-accent-soft-strong: rgba(255, 255, 255, 0.14);
+  --color-accent-fg: #000000;
+  --color-ink: #000000;
+  --color-success: #86efac;
 
-  --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
-  --radius-2xl: 36px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
   --radius-full: 9999px;
 
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
-    "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    "SF Pro Text", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --font-display: "Inter", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -45,13 +43,13 @@
   --text-4xl: clamp(2.75rem, 1.8rem + 3.5vw, 4.5rem);
   --text-5xl: clamp(3.25rem, 2rem + 5vw, 5.75rem);
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
-  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.04);
-  --shadow-card-hover: 0 16px 48px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
-  --shadow-btn-primary: 0 4px 14px rgba(0, 113, 227, 0.28);
-  --shadow-btn-primary-hover: 0 8px 24px rgba(0, 113, 227, 0.38);
+  --shadow-sm: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.55);
+  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --shadow-card-hover: 0 0 0 1px rgba(255, 255, 255, 0.22), 0 24px 48px rgba(0, 0, 0, 0.5);
+  --shadow-btn-primary: none;
+  --shadow-btn-primary-hover: 0 0 40px rgba(255, 255, 255, 0.12);
 
   --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
@@ -75,6 +73,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    color-scheme: dark;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -107,9 +106,9 @@
   h4 {
     font-family: var(--font-display);
     text-wrap: balance;
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    font-weight: 500;
   }
 
   p {
@@ -122,12 +121,12 @@
   }
 
   ::selection {
-    background: var(--color-accent-soft);
+    background: rgba(255, 255, 255, 0.18);
     color: var(--color-fg);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-fg);
     outline-offset: 3px;
   }
 }
@@ -138,9 +137,9 @@
   }
 
   .glass {
-    background: rgba(251, 251, 253, 0.72);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: saturate(140%) blur(20px);
+    -webkit-backdrop-filter: saturate(140%) blur(20px);
   }
 
   .section-pad {

@@ -16,12 +16,12 @@ export function About() {
           <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-fg-muted">
             About
           </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-fg">
+          <h2 className="mt-3 text-3xl font-medium tracking-tight text-fg">
             One practice, several languages.
           </h2>
 
           {/* Industry-standard portrait placement: About, large editorial crop */}
-          <figure className="mt-8 overflow-hidden rounded-xl bg-bg-muted shadow-card">
+          <figure className="mt-8 overflow-hidden rounded-lg bg-bg-muted shadow-card">
             <div className="aspect-[3/4] w-full max-w-md overflow-hidden lg:max-w-none">
               <img
                 src="/portrait.jpg"
