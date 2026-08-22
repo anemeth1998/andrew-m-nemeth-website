@@ -50,6 +50,26 @@ export const PHOTO_PROJECTS: Project[] = [
         body: "Leaves packed to the frame edge keep the red from floating.",
       },
     ],
+    processAssets: [
+      {
+        src: "/work/maple-red.jpg",
+        alt: "Final frame — Maple Red",
+        caption: "Final: edge-to-edge leaf density, thin sky.",
+        kind: "final",
+      },
+      {
+        src: "/work/squirrel-tree.jpg",
+        alt: "Same walk series — Hold Fast",
+        caption: "Same walk habit: close framing, one subject, quiet background.",
+        kind: "reference",
+      },
+      {
+        src: "/work/ducks-fish.jpg",
+        alt: "Southeast walks — Feeding Circle",
+        caption: "Series neighbor: density and motion on a different plane.",
+        kind: "reference",
+      },
+    ],
   },
   {
     id: "ducks-fish",
