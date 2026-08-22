@@ -7,6 +7,7 @@ import {
   PROJECTS,
   SERIES,
   YEARS,
+  seriesSlug,
   type MediaCategory,
 } from "@/data/portfolio";
 import { ProjectCard } from "@/components/portfolio/project-card";
@@ -168,6 +169,15 @@ export function Projects() {
                     </Chip>
                   );
                 })}
+                {facets.series.length === 1 && (
+                  <Link
+                    to="/series/$slug"
+                    params={{ slug: seriesSlug(facets.series[0]) }}
+                    className="inline-flex min-h-10 items-center rounded-full px-3.5 text-sm font-medium text-accent hover:text-accent-hover"
+                  >
+                    Open series
+                  </Link>
+                )}
               </FilterRow>
             )}
 
