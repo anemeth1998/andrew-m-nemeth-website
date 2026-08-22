@@ -174,7 +174,7 @@
 
   .ambient-veil {
     background: light-dark(
-      radial-gradient(ellipse at 50% 0%, rgba(0, 113, 227, 0.04), transparent 55%),
+      radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.06), transparent 55%),
       radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.06), transparent 55%)
     );
   }
@@ -196,5 +196,22 @@
 @media (prefers-color-scheme: light) {
   .ambient-star {
     opacity: 0 !important;
+  }
+}
+
+/* View Transitions — progressive enhancement */
+@supports (view-transition-name: none) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 280ms;
+    animation-timing-function: var(--ease-out-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation: none !important;
+    }
   }
 }
