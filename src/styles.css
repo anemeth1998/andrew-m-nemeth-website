@@ -215,3 +215,13 @@
     }
   }
 }
+
+/* Focus / reading mode — quieter chrome */
+.focus-mode {
+  --focus-measure: 42rem;
+}
+
+.focus-mode .ambient-field,
+.focus-mode .ambient-veil {
+  opacity: 0.35;
+}
