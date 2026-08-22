@@ -1,23 +1,57 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowUpRight, Maximize2 } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  BookOpen,
+  Maximize2,
+  Minimize2,
+} from "lucide-react";
 import {
   getRelatedProjects,
   PROJECTS,
+  seriesSlug,
   type Project,
 } from "@/data/portfolio";
 import { SiteNav } from "@/components/portfolio/site-nav";
 import { SiteFooter } from "@/components/portfolio/site-footer";
 import { Lightbox } from "@/components/portfolio/lightbox";
+import { ProcessGallery } from "@/components/portfolio/process-gallery";
+import { ComparisonSlider } from "@/components/portfolio/comparison-slider";
 import { cn } from "@/lib/utils";
+
+const FOCUS_KEY = "portfolio-focus-mode";
 
 export function WorkDetail({ project }: { project: Project }) {
   const related = getRelatedProjects(project);
   const notes = project.processNotes ?? [];
   const annotations = project.annotations ?? [];
+  const processAssets = project.processAssets ?? [];
   const [activeAnnotation, setActiveAnnotation] = useState<number | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [focusMode, setFocusMode] = useState(false);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(FOCUS_KEY);
+      if (stored === "1") setFocusMode(true);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  function toggleFocus() {
+    setFocusMode((prev) => {
+      const next = !prev;
+      try {
+        localStorage.setItem(FOCUS_KEY, next ? "1" : "0");
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
+  }
 
   const lightboxItems = useMemo(() => {
     const sameSeries = project.series
@@ -40,36 +74,109 @@ export function WorkDetail({ project }: { project: Project }) {
   }
 
   return (
-    <div className="relative min-h-dvh bg-bg text-fg">
-      <SiteNav />
-      <div className="pt-[calc(var(--grok-banner-h,0px)+4rem)]">
-        <main className="section-pad mx-auto max-w-[72rem] pb-20 pt-10">
-          <Link
-            to="/"
-            hash="work"
-            className="inline-flex items-center gap-2 text-sm text-fg-secondary hover:text-fg"
-          >
-            <ArrowLeft className="size-4" /> All work
-          </Link>
+    <div
+      className={cn(
+        "relative min-h-dvh bg-bg text-fg transition-colors",
+        focusMode && "focus-mode",
+      )}
+    >
+      {!focusMode && <SiteNav />}
+      <div
+        className={cn(
+          focusMode
+            ? "pt-6"
+            : "pt-[calc(var(--grok-banner-h,0px)+4rem)]",
+        )}
+      >
+        <main
+          className={cn(
+            "section-pad mx-auto pb-20 pt-10",
+            focusMode ? "max-w-[var(--focus-measure,42rem)]" : "max-w-[72rem]",
+          )}
+        >
+          <div className="flex items-center justify-between gap-4">
+            {!focusMode ? (
+              <Link
+                to="/"
+                hash="work"
+                className="inline-flex items-center gap-2 text-sm text-fg-secondary hover:text-fg"
+              >
+                <ArrowLeft className="size-4" /> All work
+              </Link>
+            ) : (
+              <span className="text-sm text-fg-muted">Reading mode</span>
+            )}
+            <button
+              type="button"
+              onClick={toggleFocus}
+              className={cn(
+                "inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs font-medium transition-colors",
+                focusMode
+                  ? "border-fg/20 bg-fg/5 text-fg"
+                  : "text-fg-secondary hover:border-border-strong hover:text-fg",
+              )}
+              aria-pressed={focusMode}
+              title={focusMode ? "Exit reading mode" : "Reading mode"}
+            >
+              {focusMode ? (
+                <>
+                  <Minimize2 className="size-3.5" /> Exit
+                </>
+              ) : (
+                <>
+                  <BookOpen className="size-3.5" /> Focus
+                </>
+              )}
+            </button>
+          </div>
 
-          <header className="mt-8 max-w-2xl">
+          <header className={cn("mt-8", focusMode ? "max-w-none" : "max-w-2xl")}>
             <p className="text-[13px] font-medium uppercase tracking-[0.16em] text-fg-muted">
               {project.category} · {project.year}
               {project.location ? ` · ${project.location}` : ""}
             </p>
-            <h1 className="mt-3 text-4xl font-medium tracking-tight">
+            <h1
+              className={cn(
+                "mt-3 font-medium tracking-tight",
+                focusMode ? "text-3xl md:text-[2.5rem]" : "text-4xl",
+              )}
+            >
               {project.title}
             </h1>
-            <p className="mt-3 text-lg text-fg-secondary">{project.tagline}</p>
+            <p
+              className={cn(
+                "mt-3 text-fg-secondary",
+                focusMode ? "text-base leading-relaxed" : "text-lg",
+              )}
+            >
+              {project.tagline}
+            </p>
             {project.series ? (
               <p className="mt-2 text-sm text-fg-muted">
-                Series · {project.series}
+                Series ·{" "}
+                {!focusMode ? (
+                  <Link
+                    to="/series/$slug"
+                    params={{ slug: seriesSlug(project.series) }}
+                    className="underline-offset-2 hover:underline"
+                  >
+                    {project.series}
+                  </Link>
+                ) : (
+                  project.series
+                )}
               </p>
             ) : null}
           </header>
 
           {project.image ? (
-            <figure className="relative mt-10 overflow-hidden rounded-2xl bg-bg-subtle">
+            <figure
+              className={cn(
+                "relative mt-10 overflow-hidden bg-bg-subtle",
+                focusMode && "rounded-xl",
+                !focusMode && "rounded-2xl",
+              )}
+            >
               <div className="relative">
                 <img
                   src={project.highRes ?? project.image}
@@ -78,28 +185,31 @@ export function WorkDetail({ project }: { project: Project }) {
                   fetchPriority="high"
                 />
 
-                {annotations.map((a, i) => (
-                  <button
-                    key={`${a.label}-${i}`}
-                    type="button"
-                    className={cn(
-                      "absolute flex size-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 text-[11px] font-semibold shadow-sm transition-transform",
-                      activeAnnotation === i
-                        ? "scale-110 border-fg bg-fg text-bg"
-                        : "border-fg/80 bg-bg/80 text-fg hover:scale-105",
-                    )}
-                    style={{ left: `${a.x}%`, top: `${a.y}%` }}
-                    onClick={() =>
-                      setActiveAnnotation((prev) => (prev === i ? null : i))
-                    }
-                    aria-label={a.label}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
+                {!focusMode &&
+                  annotations.map((a, i) => (
+                    <button
+                      key={`${a.label}-${i}`}
+                      type="button"
+                      className={cn(
+                        "absolute flex size-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 text-[11px] font-semibold shadow-sm transition-transform",
+                        activeAnnotation === i
+                          ? "scale-110 border-fg bg-fg text-bg"
+                          : "border-fg/80 bg-bg/80 text-fg hover:scale-105",
+                      )}
+                      style={{ left: `${a.x}%`, top: `${a.y}%` }}
+                      onClick={() =>
+                        setActiveAnnotation((prev) => (prev === i ? null : i))
+                      }
+                      aria-label={a.label}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
               </div>
 
-              {activeAnnotation != null && annotations[activeAnnotation] ? (
+              {!focusMode &&
+                activeAnnotation != null &&
+                annotations[activeAnnotation] ? (
                 <figcaption className="border-t border-border bg-bg-elevated px-5 py-4">
                   <p className="text-sm font-medium">
                     {annotations[activeAnnotation].label}
@@ -112,25 +222,32 @@ export function WorkDetail({ project }: { project: Project }) {
                 </figcaption>
               ) : null}
 
-              <div className="absolute right-3 top-3">
-                <button
-                  type="button"
-                  onClick={openLightbox}
-                  className="flex size-10 items-center justify-center rounded-full border border-border bg-bg/80 text-fg backdrop-blur-sm transition-colors hover:bg-bg"
-                  aria-label="Open immersive view"
-                  title="Immersive view"
-                >
-                  <Maximize2 className="size-4" />
-                </button>
-              </div>
+              {!focusMode && (
+                <div className="absolute right-3 top-3">
+                  <button
+                    type="button"
+                    onClick={openLightbox}
+                    className="flex size-10 items-center justify-center rounded-full border border-border bg-bg/80 text-fg backdrop-blur-sm transition-colors hover:bg-bg"
+                    aria-label="Open immersive view"
+                    title="Immersive view"
+                  >
+                    <Maximize2 className="size-4" />
+                  </button>
+                </div>
+              )}
             </figure>
           ) : null}
 
-          {project.comparison ? (
+          {!focusMode && project.comparison ? (
             <ComparisonSlider pair={project.comparison} />
           ) : null}
 
-          <div className="mt-10 grid gap-12 md:grid-cols-2">
+          <div
+            className={cn(
+              "mt-10",
+              focusMode ? "space-y-8" : "grid gap-12 md:grid-cols-2",
+            )}
+          >
             <div className="space-y-4">
               <p className="text-[17px] leading-relaxed text-fg-secondary">
                 {project.description}
@@ -159,37 +276,43 @@ export function WorkDetail({ project }: { project: Project }) {
               ) : null}
             </div>
 
-            <div className="space-y-6">
-              {notes.length ? (
-                <section>
-                  <h2 className="text-[13px] font-medium uppercase tracking-[0.16em] text-fg-muted">
-                    Process
-                  </h2>
-                  <div className="mt-4 space-y-6">
-                    {notes.map((n) => (
-                      <div key={n.title}>
-                        <h3 className="font-medium">{n.title}</h3>
-                        <p className="mt-1 text-[15px] leading-relaxed text-fg-secondary">
-                          {n.body}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              ) : (
-                <p className="text-sm text-fg-muted">
-                  Process notes for this piece are still being written.
-                </p>
-              )}
-              {project.reflection ? (
-                <blockquote className="rounded-xl border border-border bg-bg-elevated p-5 text-[15px] leading-relaxed text-fg-secondary">
-                  {project.reflection}
-                </blockquote>
-              ) : null}
-            </div>
+            {!focusMode && (
+              <div className="space-y-6">
+                {notes.length ? (
+                  <section>
+                    <h2 className="text-[13px] font-medium uppercase tracking-[0.16em] text-fg-muted">
+                      Process
+                    </h2>
+                    <div className="mt-4 space-y-6">
+                      {notes.map((n) => (
+                        <div key={n.title}>
+                          <h3 className="font-medium">{n.title}</h3>
+                          <p className="mt-1 text-[15px] leading-relaxed text-fg-secondary">
+                            {n.body}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                ) : (
+                  <p className="text-sm text-fg-muted">
+                    Process notes for this piece are still being written.
+                  </p>
+                )}
+                {project.reflection ? (
+                  <blockquote className="rounded-xl border border-border bg-bg-elevated p-5 text-[15px] leading-relaxed text-fg-secondary">
+                    {project.reflection}
+                  </blockquote>
+                ) : null}
+              </div>
+            )}
           </div>
 
-          {related.length > 0 ? (
+          {!focusMode && processAssets.length > 0 ? (
+            <ProcessGallery assets={processAssets} />
+          ) : null}
+
+          {!focusMode && related.length > 0 ? (
             <section className="mt-16 border-t border-border pt-12">
               <h2 className="text-[13px] font-medium uppercase tracking-[0.16em] text-fg-muted">
                 Related work
@@ -226,7 +349,7 @@ export function WorkDetail({ project }: { project: Project }) {
             </section>
           ) : null}
         </main>
-        <SiteFooter />
+        {!focusMode && <SiteFooter />}
       </div>
 
       {lightboxOpen && (
@@ -238,60 +361,5 @@ export function WorkDetail({ project }: { project: Project }) {
         />
       )}
     </div>
-  );
-}
-
-function ComparisonSlider({
-  pair,
-}: {
-  pair: NonNullable<Project["comparison"]>;
-}) {
-  const [pos, setPos] = useState(50);
-
-  return (
-    <section className="mt-10">
-      <h2 className="text-[13px] font-medium uppercase tracking-[0.16em] text-fg-muted">
-        Comparison
-      </h2>
-      <div className="relative mt-4 overflow-hidden rounded-2xl bg-bg-subtle">
-        <div className="relative aspect-[4/3] w-full select-none">
-          <img
-            src={pair.after}
-            alt={pair.afterLabel ?? "After"}
-            className="absolute inset-0 h-full w-full object-cover"
-            draggable={false}
-          />
-          <div
-            className="absolute inset-0 overflow-hidden"
-            style={{ width: `${pos}%` }}
-          >
-            <img
-              src={pair.before}
-              alt={pair.beforeLabel ?? "Before"}
-              className="absolute inset-0 h-full max-w-none object-cover"
-              style={{ width: `${10000 / pos}%`, maxWidth: "none" }}
-              draggable={false}
-            />
-          </div>
-          <div
-            className="absolute inset-y-0 w-0.5 bg-white shadow"
-            style={{ left: `${pos}%` }}
-          />
-          <input
-            type="range"
-            min={2}
-            max={98}
-            value={pos}
-            onChange={(e) => setPos(Number(e.target.value))}
-            className="absolute inset-0 z-10 h-full w-full cursor-ew-resize opacity-0"
-            aria-label="Comparison slider"
-          />
-        </div>
-        <div className="flex justify-between px-4 py-2 text-xs text-fg-muted">
-          <span>{pair.beforeLabel ?? "Before"}</span>
-          <span>{pair.afterLabel ?? "After"}</span>
-        </div>
-      </div>
-    </section>
   );
 }
