@@ -128,6 +128,43 @@ export function getProjectsBySeries(series: string): Project[] {
   return PROJECTS.filter((p) => p.series === series);
 }
 
+export function seriesSlug(series: string): string {
+  return series
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export function getSeriesBySlug(slug: string): string | undefined {
+  return SERIES.find((s) => seriesSlug(s) === slug);
+}
+
+export type SeriesMeta = {
+  name: string;
+  slug: string;
+  blurb: string;
+};
+
+export const SERIES_META: SeriesMeta[] = [
+  {
+    name: "Southeast walks",
+    slug: "southeast-walks",
+    blurb:
+      "Daylight frames from Carolina walks and coastal stops—color, density, and small structures noticed in motion.",
+  },
+  {
+    name: "Line studies 2026",
+    slug: "line-studies-2026",
+    blurb:
+      "Ink-line portraits and gesture studies. Contour first, density only where it earns its place.",
+  },
+];
+
+export function getSeriesMeta(name: string): SeriesMeta | undefined {
+  return SERIES_META.find((m) => m.name === name);
+}
+
+
 export function workPath(id: string) {
   return `/work/${id}` as const;
 }
