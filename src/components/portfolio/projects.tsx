@@ -2,28 +2,100 @@ import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { CATEGORIES, PROJECTS, type MediaCategory } from "@/data/portfolio";
+import {
+  CATEGORIES,
+  PROJECTS,
+  SERIES,
+  YEARS,
+  type MediaCategory,
+} from "@/data/portfolio";
 import { ProjectCard } from "@/components/portfolio/project-card";
 import { useReveal } from "@/hooks/use-reveal";
 
+type Facets = {
+  categories: MediaCategory[];
+  years: string[];
+  series: string[];
+};
+
+const emptyFacets: Facets = { categories: [], years: [], series: [] };
+
 export function Projects() {
-  const [selected, setSelected] = useState<MediaCategory[]>([]);
-  const filterKey = selected.slice().sort().join(",") || "all";
+  const [facets, setFacets] = useState<Facets>(emptyFacets);
+
+  const filterKey = useMemo(() => {
+    const parts = [
+      ...facets.categories.slice().sort(),
+      ...facets.years.slice().sort(),
+      ...facets.series.slice().sort(),
+    ];
+    return parts.join(",") || "all";
+  }, [facets]);
+
   const ref = useReveal<HTMLElement>("0px 0px -6% 0px", filterKey);
   const featured = useMemo(() => PROJECTS.filter((p) => p.featured), []);
-  const filtered = useMemo(() => {
-    if (selected.length === 0) return PROJECTS;
-    return PROJECTS.filter((p) => selected.includes(p.category));
-  }, [selected]);
 
-  function toggle(cat: MediaCategory) {
-    setSelected((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat],
-    );
+  const filtered = useMemo(() => {
+    return PROJECTS.filter((p) => {
+      if (
+        facets.categories.length > 0 &&
+        !facets.categories.includes(p.category)
+      ) {
+        return false;
+      }
+      if (facets.years.length > 0 && !facets.years.includes(p.year)) {
+        return false;
+      }
+      if (
+        facets.series.length > 0 &&
+        (!p.series || !facets.series.includes(p.series))
+      ) {
+        return false;
+      }
+      return true;
+    });
+  }, [facets]);
+
+  const activeCount =
+    facets.categories.length + facets.years.length + facets.series.length;
+
+  function toggleCategory(cat: MediaCategory) {
+    setFacets((prev) => ({
+      ...prev,
+      categories: prev.categories.includes(cat)
+        ? prev.categories.filter((c) => c !== cat)
+        : [...prev.categories, cat],
+    }));
+  }
+
+  function toggleYear(year: string) {
+    setFacets((prev) => ({
+      ...prev,
+      years: prev.years.includes(year)
+        ? prev.years.filter((y) => y !== year)
+        : [...prev.years, year],
+    }));
+  }
+
+  function toggleSeries(s: string) {
+    setFacets((prev) => ({
+      ...prev,
+      series: prev.series.includes(s)
+        ? prev.series.filter((x) => x !== s)
+        : [...prev.series, s],
+    }));
+  }
+
+  function clearAll() {
+    setFacets(emptyFacets);
   }
 
   return (
-    <section id="work" ref={ref} className="relative scroll-mt-24 border-t border-border bg-bg">
+    <section
+      id="work"
+      ref={ref}
+      className="relative scroll-mt-24 border-t border-border bg-bg"
+    >
       <div className="section-pad mx-auto max-w-[72rem] pt-16 md:pt-24">
         <div className="reveal">
           <p className="text-[13px] font-medium uppercase tracking-[0.16em] text-fg-muted">
@@ -34,7 +106,8 @@ export function Projects() {
               Stronger pieces, first
             </h2>
             <p className="max-w-sm text-[15px] leading-relaxed text-fg-secondary">
-              Full-bleed modules, then the archive — filterable by type.
+              Full-bleed modules, then the archive — filterable by type, year,
+              and series.
             </p>
           </div>
         </div>
@@ -59,55 +132,53 @@ export function Projects() {
             </div>
             <p className="text-sm text-fg-muted tabular-nums">
               {filtered.length} of {PROJECTS.length}
-              {selected.length > 0 && (
-                <span className="text-fg-secondary"> · {selected.join(", ")}</span>
-              )}
             </p>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-2" role="group" aria-label="Filter by medium">
-            <button
-              type="button"
-              onClick={() => setSelected([])}
-              aria-pressed={selected.length === 0}
-              className={cn(
-                "min-h-10 rounded-full px-4 text-sm font-medium",
-                "transition-[background-color,color,border-color] duration-[var(--motion-quick)] ease-[var(--ease-apple)]",
-                selected.length === 0
-                  ? "bg-accent text-accent-fg"
-                  : "border border-border bg-transparent text-fg-secondary hover:border-fg hover:text-fg",
-              )}
-            >
-              All
-            </button>
-            {CATEGORIES.map((cat) => {
-              const active = selected.includes(cat);
-              return (
-                <button
-                  key={cat}
-                  type="button"
-                  onClick={() => toggle(cat)}
-                  aria-pressed={active}
-                  className={cn(
-                    "min-h-10 rounded-full px-4 text-sm font-medium",
-                    "transition-[background-color,color,border-color] duration-[var(--motion-quick)] ease-[var(--ease-apple)]",
-                    active
-                      ? "bg-fg text-bg"
-                      : "border border-border bg-transparent text-fg-secondary hover:border-fg hover:text-fg",
-                  )}
-                >
-                  {cat}
-                </button>
-              );
-            })}
-            {selected.length > 0 && (
+          <div className="mt-8 space-y-4">
+            <FilterRow label="Type">
+              {CATEGORIES.map((cat) => {
+                const on = facets.categories.includes(cat);
+                return (
+                  <Chip key={cat} active={on} onClick={() => toggleCategory(cat)}>
+                    {cat}
+                  </Chip>
+                );
+              })}
+            </FilterRow>
+
+            <FilterRow label="Year">
+              {YEARS.map((year) => {
+                const on = facets.years.includes(year);
+                return (
+                  <Chip key={year} active={on} onClick={() => toggleYear(year)}>
+                    {year}
+                  </Chip>
+                );
+              })}
+            </FilterRow>
+
+            {SERIES.length > 0 && (
+              <FilterRow label="Series">
+                {SERIES.map((s) => {
+                  const on = facets.series.includes(s);
+                  return (
+                    <Chip key={s} active={on} onClick={() => toggleSeries(s)}>
+                      {s}
+                    </Chip>
+                  );
+                })}
+              </FilterRow>
+            )}
+
+            {activeCount > 0 && (
               <button
                 type="button"
-                onClick={() => setSelected([])}
+                onClick={clearAll}
                 className="inline-flex min-h-10 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-fg-muted hover:text-fg"
               >
                 <X className="size-3.5" />
-                Clear
+                Clear filters
               </button>
             )}
           </div>
@@ -115,11 +186,64 @@ export function Projects() {
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((project, i) => (
-            <ProjectCard key={`${filterKey}-${project.id}`} project={project} index={i} />
+            <ProjectCard
+              key={`${filterKey}-${project.id}`}
+              project={project}
+              index={i}
+            />
           ))}
         </div>
+
+        {filtered.length === 0 && (
+          <p className="mt-12 text-center text-sm text-fg-muted">
+            No pieces match these filters.
+          </p>
+        )}
       </div>
     </section>
+  );
+}
+
+function FilterRow({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <span className="mr-1 w-14 shrink-0 text-[11px] font-medium uppercase tracking-[0.14em] text-fg-muted">
+        {label}
+      </span>
+      {children}
+    </div>
+  );
+}
+
+function Chip({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={cn(
+        "inline-flex min-h-10 items-center rounded-full px-3.5 text-sm font-medium transition-colors",
+        active
+          ? "bg-fg text-bg"
+          : "border border-border bg-transparent text-fg-secondary hover:border-fg hover:text-fg",
+      )}
+    >
+      {children}
+    </button>
   );
 }
 
