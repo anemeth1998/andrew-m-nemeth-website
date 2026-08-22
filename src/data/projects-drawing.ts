@@ -69,6 +69,26 @@ export const DRAWING_PROJECTS: Project[] = [
         body: "Pattern only on textile so the contour stays primary.",
       },
     ],
+    processAssets: [
+      {
+        src: "/work/draw-web-heart.jpg",
+        alt: "Final — Web & Heart",
+        caption: "Final: contour locked, pattern only on the garment.",
+        kind: "final",
+      },
+      {
+        src: "/work/draw-face-to-face.jpg",
+        alt: "Line studies — Face to Face",
+        caption: "Same series: contour-first color line on two sitters.",
+        kind: "reference",
+      },
+      {
+        src: "/work/draw-glasses-close.jpg",
+        alt: "Line studies — Close Glasses",
+        caption: "Tight facial study from the same line habit.",
+        kind: "reference",
+      },
+    ],
   },
   {
     id: "draw-peace-selfie",
