@@ -1,41 +1,20 @@
 import { useMemo, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { ChevronRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import {
-  CATEGORIES,
-  PROJECTS,
-  type MediaCategory,
-  type Project,
-} from "@/data/portfolio";
+import { CATEGORIES, PROJECTS, type MediaCategory } from "@/data/portfolio";
 import { ProjectCard } from "@/components/portfolio/project-card";
-import { Lightbox } from "@/components/portfolio/lightbox";
 import { useReveal } from "@/hooks/use-reveal";
 
 export function Projects() {
   const [selected, setSelected] = useState<MediaCategory[]>([]);
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const filterKey = selected.slice().sort().join(",") || "all";
   const ref = useReveal<HTMLElement>("0px 0px -6% 0px", filterKey);
-
-  const featured = useMemo(
-    () => PROJECTS.filter((p) => p.featured),
-    [],
-  );
-
-  const gallery = useMemo(
-    () => PROJECTS.filter((p) => Boolean(p.image)),
-    [],
-  );
-
+  const featured = useMemo(() => PROJECTS.filter((p) => p.featured), []);
   const filtered = useMemo(() => {
     if (selected.length === 0) return PROJECTS;
     return PROJECTS.filter((p) => selected.includes(p.category));
   }, [selected]);
-
-  function openProject(project: Project) {
-    const i = gallery.findIndex((p) => p.id === project.id);
-    if (i >= 0) setOpenIndex(i);
-  }
 
   function toggle(cat: MediaCategory) {
     setSelected((prev) =>
@@ -43,20 +22,8 @@ export function Projects() {
     );
   }
 
-  function clearFilters() {
-    setSelected([]);
-  }
-
-  function selectOnly(cat: MediaCategory) {
-    setSelected([cat]);
-  }
-
   return (
-    <section
-      id="work"
-      ref={ref}
-      className="relative scroll-mt-24 border-t border-border bg-bg"
-    >
+    <section id="work" ref={ref} className="relative scroll-mt-24 border-t border-border bg-bg">
       <div className="section-pad mx-auto max-w-[72rem] pt-16 md:pt-24">
         <div className="reveal">
           <p className="text-[13px] font-medium uppercase tracking-[0.16em] text-fg-muted">
@@ -75,11 +42,7 @@ export function Projects() {
 
       <div className="mt-10 grid gap-3 px-3 md:grid-cols-2">
         {featured.map((project) => (
-          <FeatureModule
-            key={project.id}
-            project={project}
-            onOpen={() => openProject(project)}
-          />
+          <FeatureModule key={project.id} project={project} />
         ))}
       </div>
 
@@ -97,22 +60,15 @@ export function Projects() {
             <p className="text-sm text-fg-muted tabular-nums">
               {filtered.length} of {PROJECTS.length}
               {selected.length > 0 && (
-                <span className="text-fg-secondary">
-                  {" "}
-                  · {selected.join(", ")}
-                </span>
+                <span className="text-fg-secondary"> · {selected.join(", ")}</span>
               )}
             </p>
           </div>
 
-          <div
-            className="mt-8 flex flex-wrap items-center gap-2"
-            role="group"
-            aria-label="Filter by medium"
-          >
+          <div className="mt-8 flex flex-wrap items-center gap-2" role="group" aria-label="Filter by medium">
             <button
               type="button"
-              onClick={clearFilters}
+              onClick={() => setSelected([])}
               aria-pressed={selected.length === 0}
               className={cn(
                 "min-h-10 rounded-full px-4 text-sm font-medium",
@@ -131,7 +87,6 @@ export function Projects() {
                   key={cat}
                   type="button"
                   onClick={() => toggle(cat)}
-                  onDoubleClick={() => selectOnly(cat)}
                   aria-pressed={active}
                   className={cn(
                     "min-h-10 rounded-full px-4 text-sm font-medium",
@@ -148,7 +103,7 @@ export function Projects() {
             {selected.length > 0 && (
               <button
                 type="button"
-                onClick={clearFilters}
+                onClick={() => setSelected([])}
                 className="inline-flex min-h-10 items-center gap-1.5 rounded-full px-3 text-sm font-medium text-fg-muted hover:text-fg"
               >
                 <X className="size-3.5" />
@@ -160,35 +115,15 @@ export function Projects() {
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((project, i) => (
-            <ProjectCard
-              key={`${filterKey}-${project.id}`}
-              project={project}
-              index={i}
-              onOpen={() => openProject(project)}
-            />
+            <ProjectCard key={`${filterKey}-${project.id}`} project={project} index={i} />
           ))}
         </div>
       </div>
-
-      {openIndex !== null && (
-        <Lightbox
-          items={gallery}
-          index={openIndex}
-          onClose={() => setOpenIndex(null)}
-          onIndex={setOpenIndex}
-        />
-      )}
     </section>
   );
 }
 
-function FeatureModule({
-  project,
-  onOpen,
-}: {
-  project: Project;
-  onOpen: () => void;
-}) {
+function FeatureModule({ project }: { project: (typeof PROJECTS)[number] }) {
   return (
     <article className="reveal flex min-h-[32rem] flex-col overflow-hidden rounded-2xl bg-bg-elevated text-center md:min-h-[40rem]">
       <div className="flex flex-col items-center px-6 pb-4 pt-12 md:pt-16">
@@ -201,19 +136,19 @@ function FeatureModule({
         <p className="mt-2 max-w-md text-[15px] leading-relaxed text-fg-secondary">
           {project.tagline}
         </p>
-        <button
-          type="button"
-          onClick={onOpen}
+        <Link
+          to="/work/$id"
+          params={{ id: project.id }}
           className="mt-4 inline-flex items-center text-[15px] font-medium text-fg transition-opacity hover:opacity-70"
         >
           View
           <ChevronRight className="size-4" />
-        </button>
+        </Link>
       </div>
-      <button
-        type="button"
-        onClick={onOpen}
-        className="relative mx-auto mt-auto w-full max-w-xl flex-1 overflow-hidden px-6 pb-10"
+      <Link
+        to="/work/$id"
+        params={{ id: project.id }}
+        className="relative mx-auto mt-auto block w-full max-w-xl flex-1 overflow-hidden px-6 pb-10"
         aria-label={`Open ${project.title}`}
       >
         {project.image ? (
@@ -224,7 +159,7 @@ function FeatureModule({
             loading="lazy"
           />
         ) : null}
-      </button>
+      </Link>
     </article>
   );
 }
