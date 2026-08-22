@@ -1,0 +1,26 @@
+{
+  "name": "Andrew M. Németh",
+  "short_name": "Németh",
+  "description": "Portfolio — drawing, photography, software, and hybrid media.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fbfbfd",
+  "theme_color": "#1d1d1f",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/__grok/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
