@@ -52,7 +52,7 @@ export function ProjectCard({ project, index = 0, featured = false, onOpen }: Pr
   return (
     <article
       className={cn(
-        "reveal group relative flex h-full flex-col overflow-hidden rounded-lg bg-bg-elevated shadow-card",
+        "group relative flex h-full flex-col overflow-hidden rounded-lg bg-bg-elevated shadow-card",
         "transition-[transform,box-shadow,opacity] duration-[var(--motion-medium)] ease-[var(--ease-out-soft)]",
         "hover:-translate-y-0.5 hover:shadow-card-hover",
         "focus-within:-translate-y-0.5 focus-within:shadow-card-hover",

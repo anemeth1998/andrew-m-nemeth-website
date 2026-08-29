@@ -127,7 +127,7 @@ export function Projects() {
               <p className="text-[13px] font-medium uppercase tracking-[0.16em] text-fg-muted">
                 Archive
               </p>
-              <h2 className="mt-2 text-2xl font-medium tracking-tight text-fg md:text-3xl">
+              <h2 className="mt-2 whitespace-nowrap text-2xl font-medium tracking-tight text-fg md:text-3xl">
                 All work
               </h2>
             </div>
@@ -196,11 +196,14 @@ export function Projects() {
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((project, i) => (
-            <ProjectCard
+            <Link
               key={`${filterKey}-${project.id}`}
-              project={project}
-              index={i}
-            />
+              to="/work/$id"
+              params={{ id: project.id }}
+              className="block h-full"
+            >
+              <ProjectCard project={project} index={i} />
+            </Link>
           ))}
         </div>
 
@@ -246,7 +249,7 @@ function Chip({
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        "inline-flex min-h-10 items-center rounded-full px-3.5 text-sm font-medium transition-colors",
+        "inline-flex min-h-10 items-center whitespace-nowrap rounded-full px-3.5 text-sm font-medium transition-colors",
         active
           ? "bg-fg text-bg"
           : "border border-border bg-transparent text-fg-secondary hover:border-fg hover:text-fg",
@@ -259,7 +262,7 @@ function Chip({
 
 function FeatureModule({ project }: { project: (typeof PROJECTS)[number] }) {
   return (
-    <article className="reveal flex min-h-[32rem] flex-col overflow-hidden rounded-2xl bg-bg-elevated text-center md:min-h-[40rem]">
+    <article className="flex min-h-[22rem] flex-col overflow-hidden rounded-2xl bg-bg-elevated text-center md:min-h-[28rem]">
       <div className="flex flex-col items-center px-6 pb-4 pt-12 md:pt-16">
         <p className="text-xs font-medium uppercase tracking-[0.16em] text-fg-muted">
           {project.category}

@@ -185,11 +185,20 @@
     transition:
       opacity var(--motion-medium) var(--ease-out-soft),
       transform var(--motion-medium) var(--ease-out-soft);
+    animation: reveal-failsafe 0s 0.9s forwards;
   }
 
   .reveal.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+    animation: none;
+  }
+
+  @keyframes reveal-failsafe {
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 }
 

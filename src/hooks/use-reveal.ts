@@ -28,11 +28,10 @@ export function useReveal<T extends HTMLElement = HTMLElement>(
       return Array.from(set);
     };
 
-    // Immediately reveal anything already in view (avoids stuck opacity:0)
     const inView = (node: Element) => {
       const r = node.getBoundingClientRect();
       const vh = window.innerHeight || document.documentElement.clientHeight;
-      return r.top < vh * 0.92 && r.bottom > 0;
+      return r.top < vh * 0.98 && r.bottom > 0;
     };
 
     let targets = collect().filter((n) => !n.classList.contains("is-visible"));
@@ -51,12 +50,11 @@ export function useReveal<T extends HTMLElement = HTMLElement>(
           }
         }
       },
-      { rootMargin, threshold: 0.08 },
+      { rootMargin, threshold: 0.01 },
     );
 
     targets.forEach((t) => observer.observe(t));
 
-    // MutationObserver: new .reveal children (filter changes) get watched
     const mo = new MutationObserver(() => {
       collect()
         .filter((n) => !n.classList.contains("is-visible"))
@@ -67,9 +65,14 @@ export function useReveal<T extends HTMLElement = HTMLElement>(
     });
     mo.observe(el, { childList: true, subtree: true });
 
+    const failsafe = window.setTimeout(() => {
+      collect().forEach(mark);
+    }, 600);
+
     return () => {
       observer.disconnect();
       mo.disconnect();
+      window.clearTimeout(failsafe);
     };
   }, [rootMargin, watchKey]);
 

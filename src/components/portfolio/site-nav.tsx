@@ -69,11 +69,11 @@ export function SiteNav() {
         className="section-pad mx-auto flex h-14 max-w-[72rem] items-center justify-between md:h-16"
         aria-label="Primary"
       >
-        <div className="inline-flex items-center gap-2 text-[15px] font-semibold tracking-tight text-fg">
+        <div className="inline-flex shrink-0 items-center gap-2 text-[15px] font-semibold tracking-tight text-fg">
           <a
             href="#top"
             onClick={close}
-            className="inline-flex items-center gap-2 transition-colors duration-[var(--motion-quick)] hover:text-accent"
+            className="inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-[var(--motion-quick)] hover:text-accent"
           >
             <PeaceText className="text-fg-muted" />
             <span>{SITE.name}</span>
@@ -102,7 +102,7 @@ export function SiteNav() {
               <a
                 href={link.href}
                 className={cn(
-                  "rounded-full px-3.5 py-2 text-[13px] font-medium text-fg-secondary",
+                  "rounded-full px-2.5 py-2 text-[13px] font-medium text-fg-secondary lg:px-3.5",
                   "transition-[background-color,color] duration-[var(--motion-quick)] ease-[var(--ease-apple)]",
                   "hover:bg-accent-soft hover:text-accent-deep",
                 )}
