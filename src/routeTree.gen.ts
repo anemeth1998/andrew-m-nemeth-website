@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as ApiXFeedRouteImport } from './routes/api/x-feed'
 import { Route as SeriesSlugRouteImport } from './routes/series/$slug'
 import { Route as WorkIdRouteImport } from './routes/work/$id'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -24,11 +23,6 @@ const IndexRoute = IndexRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiXFeedRoute = ApiXFeedRouteImport.update({
-  id: '/api/x-feed',
-  path: '/api/x-feed',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SeriesSlugRoute = SeriesSlugRouteImport.update({
@@ -50,7 +44,6 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/api/x-feed': typeof ApiXFeedRoute
   '/series/$slug': typeof SeriesSlugRoute
   '/work/$id': typeof WorkIdRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -58,7 +51,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/api/x-feed': typeof ApiXFeedRoute
   '/series/$slug': typeof SeriesSlugRoute
   '/work/$id': typeof WorkIdRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -67,42 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/api/x-feed': typeof ApiXFeedRoute
   '/series/$slug': typeof SeriesSlugRoute
   '/work/$id': typeof WorkIdRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/login'
-    | '/api/x-feed'
-    | '/series/$slug'
-    | '/work/$id'
-    | '/api/auth/$'
+  fullPaths: '/' | '/login' | '/series/$slug' | '/work/$id' | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/login'
-    | '/api/x-feed'
-    | '/series/$slug'
-    | '/work/$id'
-    | '/api/auth/$'
+  to: '/' | '/login' | '/series/$slug' | '/work/$id' | '/api/auth/$'
   id:
-    | '__root__'
-    | '/'
-    | '/login'
-    | '/api/x-feed'
-    | '/series/$slug'
-    | '/work/$id'
-    | '/api/auth/$'
+    '__root__' | '/' | '/login' | '/series/$slug' | '/work/$id' | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
-  ApiXFeedRoute: typeof ApiXFeedRoute
   SeriesSlugRoute: typeof SeriesSlugRoute
   WorkIdRoute: typeof WorkIdRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -122,13 +94,6 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/x-feed': {
-      id: '/api/x-feed'
-      path: '/api/x-feed'
-      fullPath: '/api/x-feed'
-      preLoaderRoute: typeof ApiXFeedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/series/$slug': {
@@ -158,7 +123,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
-  ApiXFeedRoute: ApiXFeedRoute,
   SeriesSlugRoute: SeriesSlugRoute,
   WorkIdRoute: WorkIdRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
