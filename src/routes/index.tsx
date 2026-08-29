@@ -5,6 +5,7 @@ import { Hero } from "@/components/portfolio/hero";
 import { Projects } from "@/components/portfolio/projects";
 import { About } from "@/components/portfolio/about";
 import { Skills } from "@/components/portfolio/skills";
+import { Writing } from "@/components/portfolio/writing";
 import { Contact } from "@/components/portfolio/contact";
 import { SiteFooter } from "@/components/portfolio/site-footer";
 
@@ -24,6 +25,7 @@ function HomePage() {
             <Projects />
             <About />
             <Skills />
+            <Writing />
             <Contact />
           </main>
           <SiteFooter />

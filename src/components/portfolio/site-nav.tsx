@@ -113,7 +113,7 @@ export function SiteNav() {
           ))}
           <li className="ml-2">
             <Button asChild size="sm" variant="primary">
-              <a href="#contact">Contact</a>
+              <a href="/#contact">Contact</a>
             </Button>
           </li>
         </ul>
@@ -137,7 +137,7 @@ export function SiteNav() {
         className={cn(
           "section-pad overflow-hidden border-t border-border md:hidden",
           "transition-[max-height,opacity] duration-[var(--motion-fast)] ease-[var(--ease-out-soft)]",
-          open ? "max-h-80 opacity-100" : "max-h-0 opacity-0 border-transparent",
+          open ? "max-h-[28rem] opacity-100" : "max-h-0 opacity-0 border-transparent",
         )}
       >
         <ul className="flex flex-col gap-1 py-4">
@@ -154,7 +154,7 @@ export function SiteNav() {
           ))}
           <li className="pt-2">
             <Button asChild className="w-full">
-              <a href="#contact" onClick={close}>
+              <a href="/#contact" onClick={close}>
                 Contact
               </a>
             </Button>

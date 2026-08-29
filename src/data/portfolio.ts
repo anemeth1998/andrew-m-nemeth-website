@@ -193,12 +193,14 @@ export const NAV_LINKS = [
   { href: "/#work", label: "Work" },
   { href: "/#about", label: "About" },
   { href: "/#skills", label: "Skills" },
+  { href: "/#writing", label: "Writing" },
 ] as const;
 
 export const FOOTER_NAV_LINKS = [
   { href: "/#work", label: "Work" },
   { href: "/#about", label: "About" },
   { href: "/#skills", label: "Skills" },
+  { href: "/#writing", label: "Writing" },
   { href: "/#contact", label: "Contact" },
 ] as const;
 
