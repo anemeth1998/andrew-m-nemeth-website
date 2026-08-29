@@ -1,10 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { SITE, SOCIAL } from "@/data/portfolio";
-import {
-  X_NOTES,
-  xStatusHref,
-} from "@/data/x-feed";
 import { XLogo } from "@/components/icons/x-logo";
 import { cn } from "@/lib/utils";
 
@@ -60,7 +56,7 @@ function ensureWidgetsScript(): Promise<void> {
   });
 }
 
-/** Official profile timeline from publish.x.com — exact widget markup. */
+/** Official profile timeline from publish.x.com. */
 export function XTimeline({ className }: { className?: string }) {
   const hostRef = useRef<HTMLDivElement>(null);
   const [failed, setFailed] = useState(false);
@@ -120,43 +116,30 @@ export function XTimeline({ className }: { className?: string }) {
         className="w-full [&_iframe]:w-full"
         style={{ minHeight: failed ? undefined : TIMELINE_HEIGHT }}
       />
-      {failed && <NativeNotesFallback />}
+      {failed && <WidgetFallback />}
     </div>
   );
 }
 
-function NativeNotesFallback() {
+function WidgetFallback() {
   return (
-    <div className="border-t border-border">
-      <div className="px-5 py-4">
-        <p className="inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.16em] text-fg-muted">
-          <XLogo className="size-3.5" />
-          Notes
-        </p>
-        <p className="mt-2 text-sm text-fg-secondary">
-          The live 𝕏 widget didn’t attach. Recent notes from the profile:
-        </p>
-      </div>
-      <ul>
-        {X_NOTES.slice(0, 4).map((note) => (
-          <li key={note.id} className="border-t border-border">
-            <a
-              href={xStatusHref(note.id)}
-              target="_blank"
-              rel="noreferrer"
-              className="group block px-5 py-4 hover:bg-bg-subtle"
-            >
-              <p className="whitespace-pre-wrap text-[15px] leading-relaxed text-fg">
-                {note.body}
-              </p>
-              <p className="mt-2 inline-flex items-center gap-1 text-xs text-fg-muted group-hover:text-fg">
-                Open on 𝕏
-                <ArrowUpRight className="size-3" />
-              </p>
-            </a>
-          </li>
-        ))}
-      </ul>
+    <div className="px-5 py-8">
+      <p className="inline-flex items-center gap-2 text-[13px] font-medium uppercase tracking-[0.16em] text-fg-muted">
+        <XLogo className="size-3.5" />
+        Profile
+      </p>
+      <p className="mt-3 max-w-sm text-[15px] leading-relaxed text-fg-secondary">
+        The live timeline didn’t attach in this browser. Open the profile on 𝕏.
+      </p>
+      <a
+        href={SOCIAL.x.href}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-6 inline-flex min-h-10 items-center gap-1.5 rounded-full bg-fg px-4 text-sm font-medium text-bg transition-opacity hover:opacity-80"
+      >
+        {SOCIAL.x.handle}
+        <ArrowUpRight className="size-3.5" />
+      </a>
     </div>
   );
 }
@@ -164,7 +147,7 @@ function NativeNotesFallback() {
 export function XFollowButton({ className }: { className?: string }) {
   return (
     <a
-      href={`https://x.com/intent/follow?screen_name=AndrewMNemeth`}
+      href="https://x.com/intent/follow?screen_name=AndrewMNemeth"
       target="_blank"
       rel="noreferrer"
       className={cn(
