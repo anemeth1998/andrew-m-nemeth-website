@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { SOCIAL } from "@/data/portfolio";
+import { SITE, SOCIAL } from "@/data/portfolio";
 import { XLogo } from "@/components/icons/x-logo";
 import {
   XFollowButton,
@@ -30,42 +30,43 @@ export function Writing() {
             conversation stay on the profile — this is that feed, on the page.
           </p>
 
-          <p className="mt-6 inline-flex items-center gap-2 text-sm text-fg-muted">
-            <XLogo className="size-3.5" />
-            {SOCIAL.x.handle}
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <div className="mt-8 flex items-center gap-3">
+            <img
+              src="/x/avatar.jpg"
+              alt=""
+              width={48}
+              height={48}
+              className="size-12 rounded-full object-cover"
+            />
             <div>
-              <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.14em] text-fg-muted">
-                Follow
+              <p className="font-medium tracking-tight">{SITE.name}</p>
+              <p className="inline-flex items-center gap-1.5 text-sm text-fg-muted">
+                <XLogo className="size-3.5" />
+                {SOCIAL.x.handle}
               </p>
-              <XFollowButton />
-            </div>
-            <div>
-              <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.14em] text-fg-muted">
-                Share this site
-              </p>
-              <XTweetButton />
             </div>
           </div>
 
-          <a
-            href={SOCIAL.x.articlesHref}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 inline-flex items-center gap-1.5 text-[15px] font-medium text-fg transition-opacity hover:opacity-70"
-          >
-            Articles
-            <ArrowUpRight className="size-4" />
-          </a>
+          <div className="mt-8 flex flex-wrap gap-2">
+            <XFollowButton />
+            <XTweetButton />
+            <a
+              href={SOCIAL.x.articlesHref}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-full border border-border px-4 text-sm font-medium text-fg transition-colors hover:border-fg"
+            >
+              Articles
+              <ArrowUpRight className="size-3.5" />
+            </a>
+          </div>
         </div>
 
         <div
           className="reveal lg:col-span-7"
           style={{ transitionDelay: "80ms" }}
         >
-          <XTimeline height={560} />
+          <XTimeline />
         </div>
       </div>
     </section>
