@@ -1,7 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { SITE, SOCIAL } from "@/data/portfolio";
 import { XLogo } from "@/components/icons/x-logo";
-import { XFollowButton, XTweetButton } from "@/components/portfolio/x-embed";
+import { XFollowButton, XTimeline, XTweetButton } from "@/components/portfolio/x-embed";
 import { useReveal } from "@/hooks/use-reveal";
 
 export function Writing() {
@@ -22,8 +22,8 @@ export function Writing() {
             On 𝕏
           </h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-fg-secondary">
-            Longer pieces live as Articles. Notes and conversation live on
-            the profile.
+            Longer pieces live as Articles. The latest notes are below —
+            conversation continues on the profile.
           </p>
         </div>
 
@@ -70,6 +70,10 @@ export function Writing() {
               <ArrowUpRight className="size-4" />
             </a>
           </div>
+        </div>
+
+        <div className="lg:col-span-7">
+          <XTimeline />
         </div>
       </div>
     </section>
