@@ -193,6 +193,7 @@ export const NAV_LINKS = [
   { href: "/#work", label: "Work" },
   { href: "/#about", label: "About" },
   { href: "/#skills", label: "Skills" },
+  { href: "/#blog", label: "Blog" },
   { href: "/#writing", label: "Writing" },
 ] as const;
 
@@ -200,6 +201,7 @@ export const FOOTER_NAV_LINKS = [
   { href: "/#work", label: "Work" },
   { href: "/#about", label: "About" },
   { href: "/#skills", label: "Skills" },
+  { href: "/#blog", label: "Blog" },
   { href: "/#writing", label: "Writing" },
   { href: "/#contact", label: "Contact" },
 ] as const;
@@ -232,6 +234,6 @@ export const SITE = {
   bio: [
     "I teach high school in North Carolina and study as a non-traditional student, moving from a humanities foundation into computer science, applied physics, and mathematics.",
     "I hold a bachelor’s degree with a triple major in Political Science (Pre-law), History, and Philosophy & Religion. I’m now pursuing a second bachelor’s focused on Computer Science, Applied Physics, and Mathematics—while still in the classroom full time.",
-    "The portfolio is one practice, not several: drawing, photography, software, video, and hybrid work sit next to each other because that’s how the thinking actually moves. Longer writing lives on 𝕏.",
+    "The portfolio is one practice, not several: drawing, photography, software, video, and hybrid work sit next to each other because that’s how the thinking actually moves. Longer essays live on the Blog here; shorter notes go out on 𝕏.",
   ],
 };
