@@ -158,6 +158,12 @@ export const SERIES_META: SeriesMeta[] = [
     blurb:
       "Ink-line portraits and gesture studies. Contour first, density only where it earns its place.",
   },
+  {
+    name: "Pug",
+    slug: "pug",
+    blurb:
+      "Daylight frames of one pug at home—grass, water bottle, and the people who stay close.",
+  },
 ];
 
 export function getSeriesMeta(name: string): SeriesMeta | undefined {
