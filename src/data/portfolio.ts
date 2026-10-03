@@ -63,6 +63,8 @@ export type Project = {
   art: string;
   /** Optional photo path under /public */
   image?: string;
+  /** Brief picture description for image alt text */
+  alt?: string;
   /** Featured pieces appear in the Selected Work row */
   featured?: boolean;
   aspect?: "portrait" | "landscape" | "square" | "wide";

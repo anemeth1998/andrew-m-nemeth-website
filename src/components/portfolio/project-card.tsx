@@ -86,7 +86,7 @@ export function ProjectCard({ project, index = 0, featured = false, onOpen }: Pr
         {hasPhoto && (
           <img
             src={project.image}
-            alt=""
+            alt={project.alt ?? ""}
             className={cn(
               "absolute inset-0 size-full object-cover",
               "transition-transform duration-[var(--motion-medium)] ease-[var(--ease-out-soft)]",

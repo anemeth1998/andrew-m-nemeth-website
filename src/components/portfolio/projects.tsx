@@ -291,7 +291,7 @@ function FeatureModule({ project }: { project: (typeof PROJECTS)[number] }) {
         {project.image ? (
           <img
             src={project.image}
-            alt=""
+            alt={project.alt ?? ""}
             className="mx-auto h-full max-h-[22rem] w-full object-contain transition-transform duration-[var(--motion-medium)] ease-[var(--ease-out-soft)] hover:scale-[1.03] md:max-h-[26rem]"
             loading="lazy"
           />

@@ -2,6 +2,34 @@ import type { Project } from "./portfolio";
 
 export const DRAWING_PROJECTS: Project[] = [
   {
+    id: "draw-eye-pink",
+    title: "In the eye",
+    category: "Drawing",
+    year: "2026",
+    tagline: "Pink field, looking up",
+    description:
+      "A figure with a pink streak and red bandana, framed inside a sketched eye.",
+    alt: "Person with short black hair, a pink streak, and a red bandana, looking up inside a large sketched eye on a pink background.",
+    art: "linear-gradient(165deg, #faf9f6 0%, #e8e4dc 100%)",
+    image: "/work/draw-eye-pink.jpg",
+    aspect: "square",
+    series: "Line studies 2026",
+  },
+  {
+    id: "draw-line-portrait",
+    title: "Line portrait",
+    category: "Drawing",
+    year: "2026",
+    tagline: "Wavy hair, oval earring",
+    description:
+      "Long wavy hair and a large oval earring—clean contour, slight smile.",
+    alt: "Black-and-white line portrait of a woman with long wavy hair, a slight smile, and a large oval earring.",
+    art: "linear-gradient(165deg, #faf9f6 0%, #e8e4dc 100%)",
+    image: "/work/draw-line-portrait.jpg",
+    aspect: "square",
+    series: "Line studies 2026",
+  },
+  {
     id: "draw-face-to-face",
     title: "Face to Face",
     category: "Drawing",
