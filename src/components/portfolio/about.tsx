@@ -25,10 +25,10 @@ export function About() {
             <div className="aspect-[3/4] w-full max-w-md overflow-hidden lg:max-w-none">
               <img
                 src="/portrait.jpg"
-                alt={`${SITE.name} — portrait with camera outdoors`}
+                alt={`${SITE.name} — outdoor portrait, horns gesture`}
                 width={1200}
                 height={1600}
-                className="size-full object-cover object-[center_20%]"
+                className="size-full object-cover object-center"
                 loading="lazy"
                 decoding="async"
               />
