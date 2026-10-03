@@ -180,7 +180,7 @@ export function WorkDetail({ project }: { project: Project }) {
               <div className="relative">
                 <img
                   src={project.highRes ?? project.image}
-                  alt={project.title}
+                  alt={project.alt ?? project.title}
                   className="mx-auto max-h-[min(80vh,52rem)] w-full object-contain"
                   fetchPriority="high"
                 />
@@ -328,7 +328,7 @@ export function WorkDetail({ project }: { project: Project }) {
                       {r.image ? (
                         <img
                           src={r.image}
-                          alt=""
+                          alt={r.alt ?? ""}
                           className="aspect-[4/3] w-full object-cover"
                           loading="lazy"
                         />

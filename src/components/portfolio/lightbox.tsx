@@ -146,7 +146,7 @@ export function Lightbox({ items, index, onClose, onIndex }: Props) {
           <div className="relative max-h-full max-w-full">
             <img
               src={src}
-              alt={project.title}
+              alt={project.alt ?? project.title}
               className="max-h-[min(78vh,52rem)] max-w-full object-contain select-none"
               draggable={false}
             />

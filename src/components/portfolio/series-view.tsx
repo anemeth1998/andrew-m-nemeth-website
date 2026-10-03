@@ -54,7 +54,7 @@ export function SeriesView({ name, projects, meta }: Props) {
                     <div className="aspect-[4/3] overflow-hidden bg-bg-subtle">
                       <img
                         src={p.image}
-                        alt=""
+                        alt={p.alt ?? ""}
                         className="h-full w-full object-cover transition-transform duration-[var(--motion-medium)] ease-[var(--ease-out-soft)] group-hover:scale-[1.03]"
                         loading="lazy"
                       />
