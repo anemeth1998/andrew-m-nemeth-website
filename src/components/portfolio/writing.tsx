@@ -22,8 +22,12 @@ export function Writing() {
             On 𝕏
           </h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-fg-secondary">
-            Longer pieces live as Articles. The latest notes are below —
-            conversation continues on the profile.
+            Short-form notes and threads. Longer essays are on the{" "}
+            <a href="/#blog" className="text-fg hover:opacity-70">
+              Blog
+            </a>
+            ; the latest posts are below and the conversation continues on
+            the profile.
           </p>
         </div>
 

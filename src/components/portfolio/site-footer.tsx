@@ -122,7 +122,7 @@ export function SiteFooter() {
             </p>
           </div>
           <p className="text-xs text-fg-muted">
-            Writing lives on 𝕏. This site is for the work.
+            Essays live on the Blog; short notes on 𝕏. This site is for the work.
           </p>
         </div>
       </div>

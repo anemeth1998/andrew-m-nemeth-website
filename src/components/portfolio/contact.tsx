@@ -58,9 +58,8 @@ export function Contact() {
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-fg-secondary">
             Open to conversations about teaching, study, creative work, and
-            technical projects. Live notes are in Writing; longer pieces are
-            𝕏 Articles.
-
+            technical projects. Longer essays are on the Blog; live notes are
+            in Writing on 𝕏.
           </p>
 
           <div className="mt-8 space-y-4">
@@ -81,13 +80,12 @@ export function Contact() {
               </p>
               <WritingLink className="mt-1 text-[15px] text-fg" />
               <p className="mt-1 text-sm text-fg-muted">
-                Articles on 𝕏, plus the live feed in{" "}
+                Essays on the Blog, plus the live feed in{" "}
                 <a href="/#writing" className="text-fg hover:opacity-70">
                   Writing
                 </a>
                 .
               </p>
-
             </div>
           </div>
         </div>
